@@ -44,7 +44,7 @@ public final class AnnotationCommonServiceScenario implements Scenario {
             System.out.println(ex.getMessage());
             printData();
         } finally {
-//            commonService.cleanEnvironment();
+            commonService.cleanEnvironment();
         }
     }
     
