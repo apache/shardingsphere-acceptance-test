@@ -56,7 +56,7 @@ public abstract class CommonServiceImpl implements CommonService {
     /**
      * process success.
      */
-    @Transactional
+//    @Transactional
     @Override
     public void processSuccess() throws SQLException {
         System.out.println("-------------- Process Success Begin ---------------");
