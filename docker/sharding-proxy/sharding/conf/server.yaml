@@ -13,7 +13,7 @@
 #
 authentication:
   username: root
-  password: root
+  password:
 
 props:
   max.connections.size.per.query: 1

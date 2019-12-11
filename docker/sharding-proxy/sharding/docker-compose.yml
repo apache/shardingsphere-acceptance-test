@@ -19,7 +19,7 @@ services:
 
   proxy:
     ## get more versions of proxy here : https://hub.docker.com/r/shardingsphere/sharding-proxy/tags
-    image: "shardingsphere/sharding-proxy:3.1.0"
+    image: "shardingsphere/sharding-proxy:release"
     container_name: sharding-sphere-proxy
     depends_on:
      - mysql
