@@ -151,7 +151,7 @@ schemaName: sharding_db
 
 dataSources:
   ds_0:
-    url: jdbc:mysql://10.222.16.144:3309/demo_ds_0?useUnicode=true&characterEncoding=utf-8
+    url: jdbc:mysql://sharding-mysql:3306/demo_ds_0?useUnicode=true&characterEncoding=utf-8
     username: root
     password: 
     connectionTimeoutMilliseconds: 30000
@@ -159,7 +159,7 @@ dataSources:
     maxLifetimeMilliseconds: 1800000
     maxPoolSize: 50
   ds_1:
-    url: jdbc:mysql://10.222.16.144:3309/demo_ds_1?useUnicode=true&characterEncoding=utf-8
+    url: jdbc:mysql://sharding-mysql:3306/demo_ds_1?useUnicode=true&characterEncoding=utf-8
     username: root
     password: 
     connectionTimeoutMilliseconds: 30000
@@ -167,7 +167,6 @@ dataSources:
     maxLifetimeMilliseconds: 1800000
     maxPoolSize: 50
 
-shardingRule:
 shardingRule:
   tables:
     t_order:

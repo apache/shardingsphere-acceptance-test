@@ -15,7 +15,7 @@ services:
     ## if you insist to use password in mysql, remove MYSQL_ALLOW_EMPTY_PASSWORD=yes and uncomment following args
     #  - MYSQL_ROOT_PASSWORD=root
     volumes: 
-      - ../src/resources/manual_schema.sql:/docker-entrypoint-initdb.d/manual_schema.sql
+      - ../../../src/resources/manual_schema.sql:/docker-entrypoint-initdb.d/manual_schema.sql
 
   zookeeper:
     ## get more versions of zookeeper here : https://hub.docker.com/_/zookeeper?tab=tags
@@ -30,7 +30,7 @@ services:
       ## dockerfile path
       context: ../..
       ## dockerfile file name
-      dockerfile: ../../Dockerfile
+      dockerfile: Dockerfile
       ## prots map
     ports: 
       - "3308:3307"
@@ -38,7 +38,11 @@ services:
     container_name: sharding-proxy
     depends_on: 
       - mysql
-      - zookeeper
-    command: ["/usr/local/bin/wait-for-it.sh","mysql:3306","--","/sharding-proxy/bin/start.sh"]
+
+#    entrypoint: >
+#    /bin/sh -c "/opt/wait-for-it.sh sharding-mysql:3306 --timeout=20 --strict --
+#    && /opt/sharding-proxy/bin/start.sh
+#    && tail -f /opt/sharding-proxy/logs/stdout.log"
+
     volumes:
       - ./conf:/sharding-proxy/conf
