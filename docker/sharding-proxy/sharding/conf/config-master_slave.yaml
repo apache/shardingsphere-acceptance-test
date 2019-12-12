@@ -29,7 +29,7 @@
 #
 #dataSources:
 #  master_ds:
-#    url: jdbc:postgresql://10.222.16.144:5432/demo_master_ds?serverTimezone=UTC&useSSL=false
+#    url: jdbc:postgresql://localhost:5432/demo_master_ds?serverTimezone=UTC&useSSL=false
 #    username: postgres
 #    password: 199601postgres
 #    connectionTimeoutMilliseconds: 30000
@@ -37,7 +37,7 @@
 #    maxLifetimeMilliseconds: 1800000
 #    maxPoolSize: 50
 #  slave_ds_0:
-#    url: jdbc:postgresql://10.222.16.144:5432/demo_ds_slave_0?serverTimezone=UTC&useSSL=false
+#    url: jdbc:postgresql://localhost:5432/demo_ds_slave_0?serverTimezone=UTC&useSSL=false
 #    username: postgres
 #    password: 199601postgres
 #    connectionTimeoutMilliseconds: 30000
@@ -45,7 +45,7 @@
 #    maxLifetimeMilliseconds: 1800000
 #    maxPoolSize: 50
 #  slave_ds_1:
-#    url: jdbc:postgresql://10.222.16.144:5432/demo_ds_slave_1?serverTimezone=UTC&useSSL=false
+#    url: jdbc:postgresql://localhost:5432/demo_ds_slave_1?serverTimezone=UTC&useSSL=false
 #    username: postgres
 #    password: 199601postgres
 #    connectionTimeoutMilliseconds: 30000
