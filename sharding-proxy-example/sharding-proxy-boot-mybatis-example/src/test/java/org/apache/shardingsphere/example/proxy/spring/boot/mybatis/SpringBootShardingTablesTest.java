@@ -31,6 +31,7 @@ import java.sql.SQLException;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = SpringBootTestMain.class)
+@ActiveProfiles("sharding-tables")
 public class SpringBootShardingTablesTest {
     
     @Autowired
@@ -38,6 +39,10 @@ public class SpringBootShardingTablesTest {
     
     @Test
     public void assertCommonService() throws SQLException {
+        /**
+         * sharding-proxy cannot query data when 'max.connections.size.per.query=1' 
+         * for server.yaml using springboot and mybatis framework
+         */
 //        AnnotationCommonServiceScenario scenario = new AnnotationCommonServiceScenario(commonService);
 //        scenario.process();
 //        SpringResultAssertUtils.assertShardingTableResult(commonService);

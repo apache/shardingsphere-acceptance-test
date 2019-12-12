@@ -15,7 +15,7 @@
 authentication:
   users:
     root:
-      password: root
+      password:
     sharding:
       password: sharding
       authorizedSchemas: sharding_db
