@@ -4,3 +4,4 @@ sudo cp ../../$1/sharding-distribution/sharding-proxy-distribution/target/*.tar.
 cd sharding-proxy/sharding
 sudo docker-compose up -d
 cd ../../../
+pwd
