@@ -87,4 +87,12 @@ public class SpringResultAssertUtils {
         assertThat(memoryLogService.getOrderItemData(DatabaseAccess.INSERT).size(), is(40));
         assertThat(memoryLogService.getOrderItemData(DatabaseAccess.SELECT).size(), is(20));
     }
+    
+    public static void assertShardingMasterSlaveEncryptResult(CommonService commonService) {
+        MemoryLogService memoryLogService = commonService.getMemoryLogService();
+        assertThat(memoryLogService.getOrderData(DatabaseAccess.INSERT).size(), is(20));
+        assertThat(memoryLogService.getOrderData(DatabaseAccess.SELECT).size(), is(0));
+        assertThat(memoryLogService.getOrderItemData(DatabaseAccess.INSERT).size(), is(20));
+        assertThat(memoryLogService.getOrderItemData(DatabaseAccess.SELECT).size(), is(0));
+    }
 }

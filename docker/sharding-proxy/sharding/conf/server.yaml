@@ -44,10 +44,7 @@
 authentication:
  users:
    root:
-     password: root
-   sharding:
-     password: sharding 
-     authorizedSchemas: sharding_db, master_slave_db
+     password:
 
 props:
  max.connections.size.per.query: 10
