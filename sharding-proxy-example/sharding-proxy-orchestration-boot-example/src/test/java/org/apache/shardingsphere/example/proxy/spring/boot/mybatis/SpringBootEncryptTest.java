@@ -26,8 +26,7 @@ public class SpringBootEncryptTest {
      */
     @Test
     public void assertCommonService() throws SQLException {
-        AnnotationCommonServiceScenario scenario = new AnnotationCommonServiceScenario(commonService);
-        scenario.process();
+        AnnotationCommonServiceScenario.process1(commonService);
         SpringResultAssertUtils.assertEncryptResult(commonService);
     }
 }

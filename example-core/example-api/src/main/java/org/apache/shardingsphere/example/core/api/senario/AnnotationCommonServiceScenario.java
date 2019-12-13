@@ -48,6 +48,19 @@ public final class AnnotationCommonServiceScenario implements Scenario {
         }
     }
     
+    public static void process1(CommonService commonService) throws SQLException {
+        try {
+            commonService.initEnvironment();
+            commonService.processSuccess();
+            commonService.processFailure();
+        } catch (final Exception ex) {
+            System.out.println(ex.getMessage());
+//            printData();
+        } finally {
+            commonService.cleanEnvironment();
+        }
+    }
+    
     private void printData() {
         try {
             commonService.printData();
