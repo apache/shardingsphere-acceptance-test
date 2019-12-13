@@ -20,13 +20,16 @@ package org.apache.shardingsphere.example.core.jdbc.service;
 import org.apache.shardingsphere.example.core.api.service.ExampleService;
 import org.apache.shardingsphere.example.core.api.entity.User;
 import org.apache.shardingsphere.example.core.api.repository.UserRepository;
+import org.apache.shardingsphere.example.core.api.trace.MemoryLogService;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 public final class UserServiceImpl implements ExampleService {
-    
+
+    private MemoryLogService memoryLogService = new MemoryLogService();
+
     private final UserRepository userRepository;
     
     public UserServiceImpl(final UserRepository userRepository) {
@@ -89,5 +92,10 @@ public final class UserServiceImpl implements ExampleService {
         for (Object each : userRepository.selectAll()) {
             System.out.println(each);
         }
+    }
+
+    @Override
+    public MemoryLogService getMemoryLogService() {
+        return memoryLogService;
     }
 }
