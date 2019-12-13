@@ -21,6 +21,8 @@ import org.apache.shardingsphere.example.core.api.repository.AddressRepository;
 import org.apache.shardingsphere.example.core.api.repository.OrderItemRepository;
 import org.apache.shardingsphere.example.core.api.repository.OrderRepository;
 import org.apache.shardingsphere.example.core.api.service.ExampleService;
+import org.apache.shardingsphere.example.core.api.trace.DatabaseAccess;
+import org.apache.shardingsphere.example.core.api.trace.MemoryLogService;
 import org.apache.shardingsphere.example.core.jpa.entity.AddressEntity;
 import org.apache.shardingsphere.example.core.jpa.entity.OrderEntity;
 import org.apache.shardingsphere.example.core.jpa.entity.OrderItemEntity;
@@ -36,7 +38,9 @@ import java.util.List;
 @Service
 @Primary
 public class OrderServiceImpl implements ExampleService {
-    
+
+    private MemoryLogService memoryLogService = new MemoryLogService();
+
     @Resource
     private OrderRepository orderRepository;
     
@@ -89,11 +93,13 @@ public class OrderServiceImpl implements ExampleService {
             order.setAddressId(i);
             order.setStatus("INSERT_TEST_JPA");
             orderRepository.insert(order);
+            memoryLogService.putOrderData(DatabaseAccess.INSERT,order);
             OrderItemEntity item = new OrderItemEntity();
             item.setOrderId(order.getOrderId());
             item.setUserId(i);
             item.setStatus("INSERT_TEST_JPA");
             orderItemRepository.insert(item);
+            memoryLogService.putItemData(DatabaseAccess.INSERT,item);
             result.add(order.getOrderId());
         }
         return result;
@@ -117,5 +123,10 @@ public class OrderServiceImpl implements ExampleService {
         for (Object each : orderItemRepository.selectAll()) {
             System.out.println(each);
         }
+    }
+
+    @Override
+    public MemoryLogService getMemoryLogService() {
+        return memoryLogService;
     }
 }

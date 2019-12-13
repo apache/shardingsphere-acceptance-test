@@ -24,6 +24,8 @@ import org.apache.shardingsphere.example.core.api.repository.AddressRepository;
 import org.apache.shardingsphere.example.core.api.repository.OrderItemRepository;
 import org.apache.shardingsphere.example.core.api.repository.OrderRepository;
 import org.apache.shardingsphere.example.core.api.service.ExampleService;
+import org.apache.shardingsphere.example.core.api.trace.DatabaseAccess;
+import org.apache.shardingsphere.example.core.api.trace.MemoryLogService;
 import org.apache.shardingsphere.example.core.jdbc.repository.AddressRepositoryImpl;
 import org.apache.shardingsphere.example.core.jdbc.repository.OrderItemRepositoryImpl;
 import org.apache.shardingsphere.example.core.jdbc.repository.OrderRepositoryImpl;
@@ -34,7 +36,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class OrderServiceImpl implements ExampleService {
-    
+
+    private MemoryLogService memoryLogService = new MemoryLogService();
+
     private OrderRepository orderRepository;
     
     private OrderItemRepository orderItemRepository;
@@ -123,6 +127,7 @@ public final class OrderServiceImpl implements ExampleService {
         order.setAddressId(i);
         order.setStatus("INSERT_TEST");
         orderRepository.insert(order);
+        memoryLogService.putOrderData(DatabaseAccess.INSERT,order);
         return order;
     }
     
@@ -132,6 +137,7 @@ public final class OrderServiceImpl implements ExampleService {
         item.setUserId(i);
         item.setStatus("INSERT_TEST");
         orderItemRepository.insert(item);
+        memoryLogService.putItemData(DatabaseAccess.INSERT,item);
     }
     
     private void deleteData(final List<Long> orderIds) throws SQLException {
@@ -152,5 +158,10 @@ public final class OrderServiceImpl implements ExampleService {
         for (Object each : orderItemRepository.selectAll()) {
             System.out.println(each);
         }
+    }
+
+    @Override
+    public MemoryLogService getMemoryLogService() {
+        return memoryLogService;
     }
 }

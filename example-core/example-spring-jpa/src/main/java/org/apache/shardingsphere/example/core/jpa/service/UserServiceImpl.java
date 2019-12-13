@@ -19,6 +19,7 @@ package org.apache.shardingsphere.example.core.jpa.service;
 
 import org.apache.shardingsphere.example.core.api.repository.UserRepository;
 import org.apache.shardingsphere.example.core.api.service.ExampleService;
+import org.apache.shardingsphere.example.core.api.trace.MemoryLogService;
 import org.apache.shardingsphere.example.core.jpa.entity.UserEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,7 +31,9 @@ import java.util.List;
 
 @Service("encrypt")
 public class UserServiceImpl implements ExampleService {
-    
+
+    private MemoryLogService memoryLogService = new MemoryLogService();
+
     @Resource
     private UserRepository userRepository;
     
@@ -76,18 +79,23 @@ public class UserServiceImpl implements ExampleService {
         return result;
     }
     
-    private void deleteData(final List<Long> userIds) {
-//        System.out.println("---------------------------- Delete Data ----------------------------");
-//        for (Long each : userIds) {
-//            userRepository.delete(each);
-//        }
+    private void deleteData(final List<Long> userIds) throws SQLException {
+        System.out.println("---------------------------- Delete Data ----------------------------");
+        for (Long each : userIds) {
+            userRepository.delete(each);
+        }
     }
     
     @Override
-    public void printData() {
+    public void printData() throws SQLException {
         System.out.println("---------------------------- Print User Data -----------------------");
-//        for (Object each : userRepository.selectAll()) {
-//            System.out.println(each);
-//        }
+        for (Object each : userRepository.selectAll()) {
+            System.out.println(each);
+        }
+    }
+
+    @Override
+    public MemoryLogService getMemoryLogService() {
+        return memoryLogService;
     }
 }

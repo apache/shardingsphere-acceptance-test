@@ -20,6 +20,7 @@ package org.apache.shardingsphere.example.core.mybatis.service;
 import org.apache.shardingsphere.example.core.api.repository.UserRepository;
 import org.apache.shardingsphere.example.core.api.entity.User;
 import org.apache.shardingsphere.example.core.api.service.ExampleService;
+import org.apache.shardingsphere.example.core.api.trace.MemoryLogService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -29,6 +30,8 @@ import java.util.List;
 
 @Service("encrypt")
 public class UserServiceImpl implements ExampleService {
+
+    private MemoryLogService memoryLogService = new MemoryLogService();
     
     @Resource
     private UserRepository userRepository;
@@ -89,5 +92,10 @@ public class UserServiceImpl implements ExampleService {
         for (Object each : userRepository.selectAll()) {
             System.out.println(each);
         }
+    }
+
+    @Override
+    public MemoryLogService getMemoryLogService() {
+        return memoryLogService;
     }
 }

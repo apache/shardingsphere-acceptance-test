@@ -17,6 +17,8 @@
 
 package org.apache.shardingsphere.example.core.api.service;
 
+import org.apache.shardingsphere.example.core.api.trace.MemoryLogService;
+
 import java.sql.SQLException;
 
 public interface ExampleService {
@@ -55,4 +57,6 @@ public interface ExampleService {
      * @throws SQLException SQL exception
      */
     void printData() throws SQLException;
+
+    MemoryLogService getMemoryLogService();
 }
