@@ -25,7 +25,7 @@ import org.omg.IOP.TransactionService;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-public class ResultAssertUtils {
+public class ResultAssertUtils implements AssertUtils{
 
     public static void assertShardingDatabaseResult(final CommonService commonService) {
         assertShardingDatabaseResult(commonService, false);

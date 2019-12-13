@@ -15,16 +15,19 @@
  * limitations under the License.
  */
 
-package org.apache.shardingsphere.example.core.api.trace;
+package org.apache.shardingsphere.example.core.mybatis.common;
 
 
 import org.apache.shardingsphere.example.core.api.service.CommonService;
 import org.apache.shardingsphere.example.core.api.service.TransactionService;
+import org.apache.shardingsphere.example.core.api.trace.AssertUtils;
+import org.apache.shardingsphere.example.core.api.trace.DatabaseAccess;
+import org.apache.shardingsphere.example.core.api.trace.MemoryLogService;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-public class SpringResultAssertUtils {
+public class SpringResultAssertUtils implements AssertUtils {
 
     public static void assertShardingDatabaseResult(final CommonService commonService) {
         MemoryLogService memoryLogService = commonService.getMemoryLogService();
@@ -86,5 +89,13 @@ public class SpringResultAssertUtils {
         assertThat(memoryLogService.getOrderData(DatabaseAccess.SELECT).size(), is(20));
         assertThat(memoryLogService.getOrderItemData(DatabaseAccess.INSERT).size(), is(40));
         assertThat(memoryLogService.getOrderItemData(DatabaseAccess.SELECT).size(), is(20));
+    }
+    
+    public static void assertShardingMasterSlaveEncryptResult(CommonService commonService) {
+        MemoryLogService memoryLogService = commonService.getMemoryLogService();
+        assertThat(memoryLogService.getOrderData(DatabaseAccess.INSERT).size(), is(20));
+        assertThat(memoryLogService.getOrderData(DatabaseAccess.SELECT).size(), is(0));
+        assertThat(memoryLogService.getOrderItemData(DatabaseAccess.INSERT).size(), is(20));
+        assertThat(memoryLogService.getOrderItemData(DatabaseAccess.SELECT).size(), is(0));
     }
 }

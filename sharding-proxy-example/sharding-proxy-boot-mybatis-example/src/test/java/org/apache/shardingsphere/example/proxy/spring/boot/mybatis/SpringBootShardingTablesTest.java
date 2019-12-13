@@ -18,7 +18,7 @@
 package org.apache.shardingsphere.example.proxy.spring.boot.mybatis;
 
 import org.apache.shardingsphere.example.core.api.senario.AnnotationCommonServiceScenario;
-import org.apache.shardingsphere.example.core.api.trace.SpringResultAssertUtils;
+import org.apache.shardingsphere.example.core.mybatis.common.SpringResultAssertUtils;
 import org.apache.shardingsphere.example.core.mybatis.service.SpringPojoService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
