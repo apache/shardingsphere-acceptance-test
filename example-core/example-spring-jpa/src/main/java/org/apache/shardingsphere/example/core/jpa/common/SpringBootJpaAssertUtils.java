@@ -25,4 +25,10 @@ public class SpringBootJpaAssertUtils implements AssertUtils {
         assertThat(memoryLogService.getOrderItemData(DatabaseAccess.INSERT).size(), is(10));
     }
 
+    public static void assertShardingMasterSlaves(ExampleService exampleService){
+        MemoryLogService memoryLogService = exampleService.getMemoryLogService();
+        assertThat(memoryLogService.getOrderData(DatabaseAccess.INSERT).size(), is(10));
+        assertThat(memoryLogService.getOrderItemData(DatabaseAccess.INSERT).size(), is(10));
+    }
+
 }
