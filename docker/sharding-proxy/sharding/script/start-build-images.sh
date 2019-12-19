@@ -7,5 +7,6 @@ sudo docker-compose up -d
 cd ../../../
 sudo sed -i "s/localhost:3306/${ip}:3309/g" `grep localhost:3306 -rl sharding-jdbc-example/`
 sudo sed -i "s/localhost:3307/${ip}:3308/g" `grep localhost:3307 -rl sharding-proxy-example/`
+sudo sed -i "s/localhost:2181/${ip}:2185/g" `grep localhost:2181 -rl sharding-jdbc-example/`
 sudo chmod 777 docker/tools/wait-for-it.sh
 sudo bash docker/tools/wait-for-it.sh ${ip}:3308 -- echo "sharding-proxy is available!"
