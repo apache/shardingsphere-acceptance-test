@@ -14,7 +14,6 @@ services:
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
     ## if you insist to use password in mysql, remove MYSQL_ALLOW_EMPTY_PASSWORD=yes and uncomment following args
     #  - MYSQL_ROOT_PASSWORD=root
-    command: --ulimit nofile=65536:65536
     volumes: 
       - ../../../src/resources/manual_schema.sql:/docker-entrypoint-initdb.d/manual_schema.sql
 
