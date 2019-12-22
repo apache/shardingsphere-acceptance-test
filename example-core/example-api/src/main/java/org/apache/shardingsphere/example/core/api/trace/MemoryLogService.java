@@ -35,7 +35,7 @@ public class MemoryLogService {
     private final Map<DatabaseAccess, List<OrderItem>> orderItemMap = new HashMap<>();
     
     public void putOrderData(final DatabaseAccess operation, final Order order) {
-        if (!orderMap.containsKey(operation)) {
+        if (!orderMap.containsKey(operation) && order != null) {
             orderMap.put(operation, new LinkedList<Order>());
         }
         orderMap.get(operation).add(order);
@@ -46,7 +46,7 @@ public class MemoryLogService {
     }
     
     public void putItemData(final DatabaseAccess operation, final OrderItem orderItem) {
-        if (!orderItemMap.containsKey(operation)) {
+        if (!orderItemMap.containsKey(operation) && orderItem != null) {
             orderItemMap.put(operation, new LinkedList<OrderItem>());
         }
         orderItemMap.get(operation).add(orderItem);
