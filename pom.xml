@@ -116,7 +116,16 @@
                 <artifactId>sharding-orchestration-reg-etcd</artifactId>
                 <version>${shardingsphere.spi.impl.version}</version>
             </dependency>
-            
+            <dependency>
+                <groupId>org.apache.shardingsphere</groupId>
+                <artifactId>encrypt-core-merge</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.shardingsphere</groupId>
+                <artifactId>encrypt-core-rewrite</artifactId>
+                <version>${project.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.aspectj</groupId>
                 <artifactId>aspectjweaver</artifactId>
