@@ -21,13 +21,13 @@
 # 
 ######################################################################################################
 
- orchestration:
-  name: orchestration_ds
-  overwrite: true
-  registry:
-    type: zookeeper
-    serverLists: sharding-zookeeper:2181
-    namespace: orchestration
+orchestration:
+ name: orchestration_ds
+ overwrite: true
+ registry:
+   type: zookeeper
+   serverLists: sharding-zookeeper:2181
+   namespace: orchestration
 
 
 # orchestration:
