@@ -16,7 +16,6 @@
  */
 
 package org.apache.shardingsphere.example.orchestration.spring.boot;
-
 import org.apache.shardingsphere.example.core.api.senario.AnnotationCommonServiceScenario;
 import org.apache.shardingsphere.example.core.mybatis.common.SpringResultAssertUtils;
 import org.apache.shardingsphere.example.core.mybatis.service.SpringPojoService;
@@ -31,12 +30,11 @@ import java.sql.SQLException;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = SpringBootWithRegisterCenterTestMain.class)
-@ActiveProfiles("local-zookeeper-sharding-master-slave")
-public class ZookeeperShardingMasterSlaveTest {
+@ActiveProfiles("local-zookeeper-master-slave")
+public class ZookeeperMasterSlaveTest {
     
     @Autowired
     private SpringPojoService commonService;
-    
     
     @Test
     public void assertCommonService() throws SQLException {
