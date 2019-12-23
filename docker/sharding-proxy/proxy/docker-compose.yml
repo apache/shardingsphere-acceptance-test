@@ -61,7 +61,7 @@ services:
       dockerfile: Dockerfile
       ## prots map
     ports:
-      - "3308:3307"
+      - "4096:2048"
       ## constainer name
     container_name: orchestration-proxy
     depends_on:
