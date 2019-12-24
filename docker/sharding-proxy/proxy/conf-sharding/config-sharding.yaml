@@ -157,7 +157,7 @@ dataSources:
     connectionTimeoutMilliseconds: 30000
     idleTimeoutMilliseconds: 60000
     maxLifetimeMilliseconds: 1800000
-    maxPoolSize: 50
+    maxPoolSize: 200
   ds_1:
     url: jdbc:mysql://sharding-proxy-mysql:3306/demo_ds_1?useUnicode=true&characterEncoding=utf-8
     username: root
@@ -165,7 +165,7 @@ dataSources:
     connectionTimeoutMilliseconds: 30000
     idleTimeoutMilliseconds: 60000
     maxLifetimeMilliseconds: 1800000
-    maxPoolSize: 50
+    maxPoolSize: 200
 
 shardingRule:
   tables:
