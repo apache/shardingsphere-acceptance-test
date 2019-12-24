@@ -21,25 +21,25 @@
 # This example is configuration of sharding rule.
 #   
 # If you want to use sharding, please refer to this file; 
-# if you want to use master-slave, please refer to the config-master-slave.yaml.
+# if you want to use master-slave, please refer to the config-master_slave.yaml.
 # 
 ######################################################################################################
 #
 #schemaName: sharding_db
 #
 #dataSources:
-#  db0:
-#    url: jdbc:postgresql://docker_default:5432/demo_db0?serverTimezone=UTC&useSSL=false
+#  ds_0:
+#    url: jdbc:postgresql://localhost:5432/demo_ds_0?serverTimezone=UTC&useSSL=false
 #    username: postgres
-#    password: 199601postgres
+#    password: postgres
 #    connectionTimeoutMilliseconds: 30000
 #    idleTimeoutMilliseconds: 60000
 #    maxLifetimeMilliseconds: 1800000
 #    maxPoolSize: 50
-#  db1:
-#    url: jdbc:postgresql://docker_default:5432/demo_db1?serverTimezone=UTC&useSSL=false
+#  ds_1:
+#    url: jdbc:postgresql://localhost:5432/demo_ds_1?serverTimezone=UTC&useSSL=false
 #    username: postgres
-#    password: 199601postgres
+#    password: postgres
 #    connectionTimeoutMilliseconds: 30000
 #    idleTimeoutMilliseconds: 60000
 #    maxLifetimeMilliseconds: 1800000
@@ -48,7 +48,7 @@
 #shardingRule:
 #  tables:
 #    t_order:
-#      actualDataNodes: db${0..1}.t_order_${0..1}
+#      actualDataNodes: ds_${0..1}.t_order_${0..1}
 #      tableStrategy:
 #        inline:
 #          shardingColumn: order_id
@@ -57,7 +57,7 @@
 #        type: SNOWFLAKE
 #        column: order_id
 #    t_order_item:
-#      actualDataNodes: db${0..1}.t_order_item_${0..1}
+#      actualDataNodes: ds_${0..1}.t_order_item_${0..1}
 #      tableStrategy:
 #        inline:
 #          shardingColumn: order_id
@@ -70,130 +70,71 @@
 #  defaultDatabaseStrategy:
 #    inline:
 #      shardingColumn: user_id
-#      algorithmExpression: db${user_id % 2}
+#      algorithmExpression: ds_${user_id % 2}
 #  defaultTableStrategy:
 #    none:
 
 ######################################################################################################
 #
-# If you want to connect to postgresql, you should manually copy postgresql driver to lib directory.
+# If you want to connect to MySQL, you should manually copy MySQL driver to lib directory.
 #
 ######################################################################################################
-
-#schemaName: sharding_db
-#
-#dataSources:
-#  db0:
-#    url: jdbc:postgresql://ceshi.com:5432/demo_db0?serverTimezone=UTC&useSSL=false
-#    username: root
-#    password: 199601123456
-#    connectionTimeoutMilliseconds: 30000
-#    idleTimeoutMilliseconds: 60000
-#    maxLifetimeMilliseconds: 1800000
-#    maxPoolSize: 50
-#  db1:
-#    url: jdbc:postgresql://ceshi.com:5432/demo_db1?serverTimezone=UTC&useSSL=false
-#    username: root
-#    password: 199601123456
-#    connectionTimeoutMilliseconds: 30000
-#    idleTimeoutMilliseconds: 60000
-#    maxLifetimeMilliseconds: 1800000
-#    maxPoolSize: 50
-#
-#shardingRule:
-#  tables:
-#    t_order:
-#      actualDataNodes: db${0..1}.t_order_${0..1}
-#      tableStrategy:
-#        inline:
-#          shardingColumn: order_id
-#          algorithmExpression: t_order_${order_id % 2}
-#      keyGenerator:
-#        type: SNOWFLAKE
-#        column: order_id
-#    t_order_item:
-#      actualDataNodes: db${0..1}.t_order_item_${0..1}
-#      tableStrategy:
-#        inline:
-#          shardingColumn: order_id
-#          algorithmExpression: t_order_item_${order_id % 2}
-#      keyGenerator:
-#        type: SNOWFLAKE
-#        column: order_item_id
-#  bindingTables:
-#    - t_order,t_order_item
-#  defaultDatabaseStrategy:
-#    inline:
-#      shardingColumn: user_id
-#      algorithmExpression: db${user_id % 2}
-#  defaultTableStrategy:
-#    none:
-#encryptRule:
-#  encryptors:
-#    encryptor_aes:
-#      type: aes
-#      props:
-#        aes.key.value: 123456abc
-#    encryptor_md5:
-#      type: md5
-#  tables:
-#    t_order:
-#      columns:
-#        user_id:
-#          plainColumn: user_id
-#          cipherColumn: user_cipher
-#          encryptor: encryptor_aes
-#        order_id:
-#          cipherColumn: order_cipher
-#          encryptor: encryptor_md5
 
 schemaName: sharding_db
 
 dataSources:
   ds_0:
-    url: jdbc:mysql://sharding-proxy-mysql:3306/demo_ds_0?useUnicode=true&characterEncoding=utf-8
+    url: jdbc:mysql://sharding-proxy-mysql:3306/demo_ds_0?serverTimezone=UTC&useSSL=false
     username: root
-    password: 
+    password:
     connectionTimeoutMilliseconds: 30000
     idleTimeoutMilliseconds: 60000
     maxLifetimeMilliseconds: 1800000
     maxPoolSize: 50
   ds_1:
-    url: jdbc:mysql://sharding-proxy-mysql:3306/demo_ds_1?useUnicode=true&characterEncoding=utf-8
+    url: jdbc:mysql://sharding-proxy-mysql:3306/demo_ds_1?serverTimezone=UTC&useSSL=false
     username: root
-    password: 
+    password:
     connectionTimeoutMilliseconds: 30000
     idleTimeoutMilliseconds: 60000
     maxLifetimeMilliseconds: 1800000
     maxPoolSize: 50
 
 shardingRule:
-  tables:
-    t_order:
-      actualDataNodes: ds_${0..1}.t_order_${0..1}
-      tableStrategy:
+ tables:
+   t_address:
+     actualDataNodes: ds_${0..1}.t_address
+   t_order:
+     actualDataNodes: ds_${0..1}.t_order_${0..1}
+     tableStrategy:
         inline:
-          shardingColumn: order_id
-          algorithmExpression: t_order_${order_id % 2}
-      keyGenerator:
-        type: SNOWFLAKE
-        column: order_id
-    t_order_item:
-      actualDataNodes: ds_${0..1}.t_order_item_${0..1}
-      tableStrategy:
+         shardingColumn: order_id
+         algorithmExpression: t_order_${order_id % 2}
+     databaseStrategy:
         inline:
-          shardingColumn: order_id
-          algorithmExpression: t_order_item_${order_id % 2}
-      keyGenerator:
-        type: SNOWFLAKE
-        column: order_item_id
-  bindingTables:
-    - t_order,t_order_item
-  defaultDatabaseStrategy:
-    inline:
-      shardingColumn: user_id
-      algorithmExpression: ds_${user_id % 2}
-  defaultTableStrategy:
-    none:
-
-
+         shardingColumn: user_id
+         algorithmExpression: ds_${user_id % 2}
+     keyGenerator:
+       type: SNOWFLAKE
+       column: order_id
+   t_order_item:
+     actualDataNodes: ds_${0..1}.t_order_item_${0..1}
+     tableStrategy:
+       inline:
+         shardingColumn: order_id
+         algorithmExpression: t_order_item_${order_id % 2}
+     databaseStrategy:
+        inline:
+         shardingColumn: user_id
+         algorithmExpression: ds_${user_id % 2}
+     keyGenerator:
+       type: SNOWFLAKE
+       column: order_id
+ bindingTables:
+   - t_order,t_order_item
+ broadcastTables:
+    - t_address
+ defaultDatabaseStrategy:
+   none:
+ defaultTableStrategy:
+   none:
