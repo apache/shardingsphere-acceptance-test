@@ -20,10 +20,6 @@ public class SpringBootEncryptTest {
     @Autowired
     private SpringPojoService commonService;
     
-    /**
-     * Encrypted field not added. Table needs to be modified
-     * @throws SQLException
-     */
     @Test
     public void assertCommonService() throws SQLException {
         AnnotationCommonServiceScenario.process1(commonService);
