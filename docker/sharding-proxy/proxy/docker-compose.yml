@@ -55,12 +55,12 @@ services:
 
   proxy-orchestration:
     image: "sharding-proxy:release"
-    build:
-      ## dockerfile path
-      context: ../..
-      ## dockerfile file name
-      dockerfile: Dockerfile
-      ## prots map
+#    build:
+#      ## dockerfile path
+#      context: ../..
+#      ## dockerfile file name
+#      dockerfile: Dockerfile
+#      ## prots map
     ports:
       - "13308:3308"
       ## constainer name
