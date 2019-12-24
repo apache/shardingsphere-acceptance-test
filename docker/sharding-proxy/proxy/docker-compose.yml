@@ -27,7 +27,7 @@ services:
     ## get more versions of zookeeper here : https://hub.docker.com/_/zookeeper?tab=tags
     image: "zookeeper:3.4"
     ports: 
-     - "2183:2181"
+     - "2185:2181"
     container_name: sharding-proxy-zookeeper
     
   proxy-sharding:
