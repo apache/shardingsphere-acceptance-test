@@ -11,7 +11,9 @@ sudo cp ../../$1/sharding-distribution/sharding-proxy-distribution/target/*.tar.
 cd sharding-jdbc/jdbc
 sudo docker-compose up -d
 cd ../../
-cd sharding-proxy/proxy
+cd sharding-proxy/proxy/compose-sharding
+sudo docker-compose up -d
+cd ../compose-orch
 sudo docker-compose up -d
 cd ../../../
 sudo sed -i "s/localhost:3306/${ip}:${PORT_JDBC_MYSQL}/g" `grep localhost:3306 -rl sharding-jdbc-example/`
