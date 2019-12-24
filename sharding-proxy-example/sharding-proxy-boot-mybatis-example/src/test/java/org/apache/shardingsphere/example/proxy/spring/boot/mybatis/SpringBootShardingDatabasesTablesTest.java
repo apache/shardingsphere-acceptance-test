@@ -31,17 +31,16 @@ import java.sql.SQLException;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = SpringBootTestMain.class)
-@ActiveProfiles("sharding-tables")
-public class SpringBootShardingTablesTest {
+@ActiveProfiles("sharding-databases-tables")
+public class SpringBootShardingDatabasesTablesTest {
     
     @Autowired
     private SpringPojoService commonService;
     
     @Test
     public void assertCommonService() throws SQLException {
-        System.out.println("33");
-//        AnnotationCommonServiceScenario.process1(commonService);
-//        SpringResultAssertUtils.assertShardingTableResult(commonService);
+        AnnotationCommonServiceScenario.process1(commonService);
+        SpringResultAssertUtils.assertShardingDatabaseAndTableResult(commonService);
     }
     
 }
