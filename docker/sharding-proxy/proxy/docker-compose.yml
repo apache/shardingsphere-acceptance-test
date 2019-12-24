@@ -6,7 +6,6 @@ services:
     ## default port is 3306, you could change to 33060 or any other port doesn't conflict MySQL on your OS
     ports:
       - "3309:3306"
-      - 
     container_name: sharding-proxy-mysql
     ## launch mysql without password
     ## you could access the mysql in container by following command :
