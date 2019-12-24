@@ -44,7 +44,7 @@ services:
     container_name: sharding-proxy
     depends_on: 
       - mysql
-    entrypoint: ./usr/local/bin/docker-entrypt.sh
+    entrypoint: ./usr/local/bin/docker-entrypoint.sh
     volumes:
       - ./conf-sharding:/sharding-proxy/conf
 
@@ -63,7 +63,7 @@ services:
     depends_on:
       - mysql
 
-    entrypoint: ./usr/local/bin/docker-entrypt.sh
+    entrypoint: ./usr/local/bin/docker-entrypoint.sh
 
     volumes:
       - ./conf-orchestration:/sharding-proxy/conf
