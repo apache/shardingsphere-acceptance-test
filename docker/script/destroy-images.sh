@@ -6,7 +6,9 @@ cd sharding-jdbc/jdbc
 #sudo docker-compose down --rmi all remove all images of service
 sudo docker-compose down
 cd ../../
-cd sharding-proxy/proxy
+cd sharding-proxy/proxy/compose-sharding
 #sudo docker-compose down --rmi all remove all images of service
 sudo docker-compose down
-cd ../../../
+cd ../compose-orch
+cd sharding-proxy/proxy/compose-sharding
+cd ../../../../
