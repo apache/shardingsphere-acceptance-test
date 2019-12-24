@@ -45,8 +45,9 @@ services:
     depends_on: 
       - mysql
     entrypoint:
-      - /usr/local/bin/wait-for-it.sh sharding-proxy-mysql:3306
-      - /sharding-proxy/bin/start.sh 3307
+      - pwd
+      - sh /usr/local/bin/wait-for-it.sh sharding-proxy-mysql:3306
+      - sh /sharding-proxy/bin/start.sh 3307
       - tail -f /sharding-proxy/logs/stdout.log
 
     volumes:
@@ -68,8 +69,9 @@ services:
       - mysql
 
     entrypoint:
-      - /usr/local/bin/wait-for-it.sh sharding-proxy-mysql:3306
-      - /sharding-proxy/bin/start.sh 3307
+      - pwd
+      - sh /usr/local/bin/wait-for-it.sh sharding-proxy-mysql:3306
+      - sh /sharding-proxy/bin/start.sh 3307
       - tail -f /sharding-proxy/logs/stdout.log
 
     volumes:
