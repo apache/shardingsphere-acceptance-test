@@ -151,7 +151,7 @@ schemaName: sharding_table
 
 dataSources:
   ds:
-    url: jdbc:mysql://sharding-proxy-mysql:3306/demo_ds?useUnicode=true&characterEncoding=utf-8
+    url: jdbc:mysql://orch-proxy-mysql:3306/demo_ds?useUnicode=true&characterEncoding=utf-8
     username: root
     password: 
     connectionTimeoutMilliseconds: 30000

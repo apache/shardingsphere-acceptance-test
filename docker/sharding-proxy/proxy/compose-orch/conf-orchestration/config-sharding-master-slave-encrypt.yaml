@@ -30,11 +30,11 @@
 #
 ######################################################################################################
 #
-schemaName: sharding_master_slave_db
+schemaName: sharding_master_slave_encrypt_db
 
 dataSources:
   ds0:
-    url: jdbc:mysql://sharding-proxy-mysql:3306/demo_ds_master_0?serverTimezone=UTC&useSSL=false
+    url: jdbc:mysql://orch-proxy-mysql:3306/demo_ds_master_0?serverTimezone=UTC&useSSL=false
     username: root
     password:
     connectionTimeoutMilliseconds: 30000
@@ -42,7 +42,7 @@ dataSources:
     maxLifetimeMilliseconds: 1800000
     maxPoolSize: 65
   ds0_slave0:
-    url: jdbc:mysql://sharding-proxy-mysql:3306/demo_ds_master_0_slave_0?serverTimezone=UTC&useSSL=false
+    url: jdbc:mysql://orch-proxy-mysql:3306/demo_ds_master_0_slave_0?serverTimezone=UTC&useSSL=false
     username: root
     password:
     connectionTimeoutMilliseconds: 30000
@@ -50,7 +50,7 @@ dataSources:
     maxLifetimeMilliseconds: 1800000
     maxPoolSize: 65
   ds0_slave1:
-    url: jdbc:mysql://sharding-proxy-mysql:3306/demo_ds_master_0_slave_1?serverTimezone=UTC&useSSL=false
+    url: jdbc:mysql://orch-proxy-mysql:3306/demo_ds_master_0_slave_1?serverTimezone=UTC&useSSL=false
     username: root
     password:
     connectionTimeoutMilliseconds: 30000
@@ -58,7 +58,7 @@ dataSources:
     maxLifetimeMilliseconds: 1800000
     maxPoolSize: 65
   ds1:
-    url: jdbc:mysql://sharding-proxy-mysql:3306/demo_ds_master_1?serverTimezone=UTC&useSSL=false
+    url: jdbc:mysql://orch-proxy-mysql:3306/demo_ds_master_1?serverTimezone=UTC&useSSL=false
     username: root
     password:
     connectionTimeoutMilliseconds: 30000
@@ -66,7 +66,7 @@ dataSources:
     maxLifetimeMilliseconds: 1800000
     maxPoolSize: 65
   ds1_slave0:
-    url: jdbc:mysql://sharding-proxy-mysql:3306/demo_ds_master_1_slave_0?serverTimezone=UTC&useSSL=false
+    url: jdbc:mysql://orch-proxy-mysql:3306/demo_ds_master_1_slave_0?serverTimezone=UTC&useSSL=false
     username: root
     password:
     connectionTimeoutMilliseconds: 30000
@@ -74,7 +74,7 @@ dataSources:
     maxLifetimeMilliseconds: 1800000
     maxPoolSize: 65
   ds1_slave1:
-    url: jdbc:mysql://sharding-proxy-mysql:3306/demo_ds_master_1_slave_1?serverTimezone=UTC&useSSL=false
+    url: jdbc:mysql://orch-proxy-mysql:3306/demo_ds_master_1_slave_1?serverTimezone=UTC&useSSL=false
     username: root
     password:
     connectionTimeoutMilliseconds: 30000
@@ -130,3 +130,22 @@ shardingRule:
         - ds1_slave0
         - ds1_slave1
       loadBalanceAlgorithmType: ROUND_ROBIN
+      
+encryptRule:
+  encryptors:
+    encryptor_aes:
+      type: aes
+      props:
+        aes.key.value: 123456abc
+    encryptor_md5:
+      type: md5
+  tables:
+    t_order:
+      columns:
+        user_id:
+          plainColumn: user_plain
+          cipherColumn: user_cipher
+          encryptor: encryptor_aes
+        order_id:
+          cipherColumn: order_cipher
+          encryptor: encryptor_md5
