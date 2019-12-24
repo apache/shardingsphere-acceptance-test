@@ -20,7 +20,7 @@ services:
         hard: "65536"
 
     volumes: 
-      - ../../../src/resources/manual_schema.sql:/docker-entrypoint-initdb.d/manual_schema.sql
+      - ../../../../src/resources/manual_schema.sql:/docker-entrypoint-initdb.d/manual_schema.sql
       - ./mysql-conf/my.cnf:/etc/mysql/my.cnf
 
   zookeeper:
@@ -34,9 +34,9 @@ services:
     image: "sharding-proxy:release"
     build:
       ## dockerfile path
-      context: ../../..
+      context: ../../../../
       ## dockerfile file name
-      dockerfile: ../../../Dockerfile
+      dockerfile: ../../../../Dockerfile
       ## prots map
     ports:
       - "3305:3305"
