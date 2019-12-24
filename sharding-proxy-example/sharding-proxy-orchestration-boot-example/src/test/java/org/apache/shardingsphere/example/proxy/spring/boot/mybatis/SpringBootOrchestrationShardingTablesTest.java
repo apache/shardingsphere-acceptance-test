@@ -32,7 +32,7 @@ import java.sql.SQLException;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = SpringBootTestMain.class)
 @ActiveProfiles("sharding-tables")
-public class SpringBootShardingTablesTest {
+public class SpringBootOrchestrationShardingTablesTest {
     
     @Autowired
     private SpringPojoService commonService;
