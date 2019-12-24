@@ -69,9 +69,9 @@ services:
       - mysql
 
     entrypoint:
-      - /usr/local/bin/wait-for-it.sh sharding-proxy-mysql:3306
-      - /sharding-proxy/bin/start.sh 3307
-      - tail -f /sharding-proxy/logs/stdout.log
+      - ./usr/local/bin/wait-for-it.sh sharding-proxy-mysql:3306
+      - ./sharding-proxy/bin/start.sh 3307
+      - tail -f ./sharding-proxy/logs/stdout.log
 
     volumes:
       - ./conf-orchestration:/sharding-proxy/conf
