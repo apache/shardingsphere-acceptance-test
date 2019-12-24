@@ -15,7 +15,7 @@ cd sharding-proxy/proxy/compose-sharding
 sudo docker-compose up -d
 cd ../compose-orch
 sudo docker-compose up -d
-cd ../../../
+cd ../../../../
 sudo sed -i "s/localhost:3306/${ip}:${PORT_JDBC_MYSQL}/g" `grep localhost:3306 -rl sharding-jdbc-example/`
 sudo sed -i "s/localhost:2181/${ip}:${PORT_JDBC_ZK}/g" `grep localhost:2181 -rl sharding-jdbc-example/`
 sudo sed -i "s/localhost:3307/${ip}:${PORT_PROXY_SHARDING}/g" `grep localhost:3307 -rl sharding-proxy-example/sharding-proxy-boot-mybatis-example/`
