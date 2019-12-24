@@ -36,7 +36,7 @@ services:
       ## constainer name
     container_name: sharding-proxy
     depends_on: 
-      - mysql
+      - proxy-sharding-mysql
 
 #    entrypoint: >
 #    /bin/sh -c "/opt/wait-for-it.sh sharding-mysql:3306 --timeout=20 --strict --
