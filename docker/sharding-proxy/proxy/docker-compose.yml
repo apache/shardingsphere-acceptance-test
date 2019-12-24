@@ -6,7 +6,7 @@ services:
     ## default port is 3306, you could change to 33060 or any other port doesn't conflict MySQL on your OS
     ports:
       - "3309:3306"
-    container_name: sharding-mysql
+    container_name: sharding-proxy-mysql
     ## launch mysql without password
     ## you could access the mysql in container by following command :
     ## docker exec -it sharding-sphere-mysql mysql -uroot
@@ -21,14 +21,14 @@ services:
 
     volumes: 
       - ../../../src/resources/manual_schema.sql:/docker-entrypoint-initdb.d/manual_schema.sql
-      - ../../mysql-conf/my.cnf:/etc/mysql/my.cnf
+      - ./mysql-conf/my.cnf:/etc/mysql/my.cnf
 
   zookeeper:
     ## get more versions of zookeeper here : https://hub.docker.com/_/zookeeper?tab=tags
     image: "zookeeper:3.4"
     ports: 
      - "2185:2181"
-    container_name: sharding-zookeeper
+    container_name: sharding-proxy-zookeeper
     
   proxy-sharding:
     image: "sharding-proxy:release"
