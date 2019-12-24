@@ -1,12 +1,12 @@
 version: '3.7'
 services:
-  proxy-orch-mysql:
+  mysql:
     ## mysql version, you could get more tags at here : https://hub.docker.com/_/mysql?tab=tags
     image: "mysql:5.7"
     ## default port is 3306, you could change to 33060 or any other port doesn't conflict MySQL on your OS
     ports:
-      - "3303:3306"
-    container_name: orch-proxy-mysql
+      - "3309:3306"
+    container_name: sharding-proxy-mysql
     ## launch mysql without password
     ## you could access the mysql in container by following command :
     ## docker exec -it sharding-sphere-mysql mysql -uroot
@@ -20,7 +20,7 @@ services:
         hard: "65536"
 
     volumes: 
-      - ../../../../src/resources/manual_schema.sql:/docker-entrypoint-initdb.d/manual_schema.sql
+      - ../../../src/resources/manual_schema.sql:/docker-entrypoint-initdb.d/manual_schema.sql
       - ./mysql-conf/my.cnf:/etc/mysql/my.cnf
 
   zookeeper:
@@ -29,21 +29,44 @@ services:
     ports: 
      - "2185:2181"
     container_name: sharding-proxy-zookeeper
+    
+  proxy-sharding:
+    image: "sharding-proxy:release"
+    build:
+      ## dockerfile path
+      context: ../..
+      ## dockerfile file name
+      dockerfile: Dockerfile
+      ## prots map
+    ports: 
+      - "3308:3307"
+      ## constainer name
+    container_name: sharding-proxy
+    depends_on: 
+      - mysql
+
+#    entrypoint: >
+#    /bin/sh -c "/opt/wait-for-it.sh sharding-mysql:3306 --timeout=20 --strict --
+#    && /opt/sharding-proxy/bin/start.sh
+#    && tail -f /opt/sharding-proxy/logs/stdout.log"
+
+    volumes:
+      - ./conf-sharding:/sharding-proxy/conf
 
   proxy-orchestration:
     image: "sharding-proxy:release"
     build:
       ## dockerfile path
-      context: ../../../../
+      context: ../..
       ## dockerfile file name
-      dockerfile: ../../../../Dockerfile
+      dockerfile: Dockerfile
       ## prots map
     ports:
       - "3305:3305"
       ## constainer name
     container_name: orchestration-proxy
     depends_on:
-      - proxy-orch-mysql
+      - mysql
 
     #    entrypoint: >
     #    /bin/sh -c "/opt/wait-for-it.sh sharding-mysql:3306 --timeout=20 --strict --
