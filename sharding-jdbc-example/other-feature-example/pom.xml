@@ -2,20 +2,20 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
     <parent>
+        <artifactId>sharding-jdbc-example</artifactId>
         <groupId>org.apache.shardingsphere.example</groupId>
-        <artifactId>shardingsphere-example</artifactId>
         <version>4.0.0-RC4-SNAPSHOT</version>
     </parent>
-    <artifactId>sharding-jdbc-example</artifactId>
-    <name>Example::jdbc::root</name>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>other-feature-example</artifactId>
+    <name>Example::other-feature::root</name>
     
     <packaging>pom</packaging>
-    
     <modules>
-        <module>sharding-example</module>
-        <module>orchestration-example</module>
-        <module>other-feature-example</module>
+        <module>encrypt-raw-jdbc-example</module>
     </modules>
+
+
 </project>

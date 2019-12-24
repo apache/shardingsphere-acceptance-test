@@ -20,25 +20,30 @@ package org.apache.shardingsphere.example.core.api.trace;
 
 import org.apache.shardingsphere.example.core.api.entity.Order;
 import org.apache.shardingsphere.example.core.api.entity.OrderItem;
+import org.apache.shardingsphere.example.core.api.entity.User;
 
 import java.util.*;
 
-/**
- * Memory repository history.
- *
- * @author zhaojun
- */
 public class MemoryLogService {
     
     private final Map<DatabaseAccess, List<Order>> orderMap = new HashMap<>();
     
     private final Map<DatabaseAccess, List<OrderItem>> orderItemMap = new HashMap<>();
     
+    private final Map<DatabaseAccess, List<User>> userMap = new HashMap<>();
+    
     public void putOrderData(final DatabaseAccess operation, final Order order) {
         if (!orderMap.containsKey(operation) && order != null) {
             orderMap.put(operation, new LinkedList<Order>());
         }
         orderMap.get(operation).add(order);
+    }
+    
+    public void putUserData(final DatabaseAccess operation, final User user) {
+        if (!userMap.containsKey(operation) && user != null) {
+            userMap.put(operation, new LinkedList<User>());
+        }
+        userMap.get(operation).add(user);
     }
     
     public List<Order> getOrderData(final DatabaseAccess operation) {
@@ -54,5 +59,11 @@ public class MemoryLogService {
     
     public List<OrderItem> getOrderItemData(final DatabaseAccess operation) {
         return orderItemMap.containsKey(operation) ? orderItemMap.get(operation) : Collections.<OrderItem>emptyList();
+    } 
+    
+    public List<User> getUserData(final DatabaseAccess operation) {
+        return userMap.containsKey(operation) ? userMap.get(operation) : Collections.<User>emptyList();
     }
+    
+   
 }

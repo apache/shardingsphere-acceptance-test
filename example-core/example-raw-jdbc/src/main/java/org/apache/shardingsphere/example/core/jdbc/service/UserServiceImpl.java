@@ -17,9 +17,10 @@
 
 package org.apache.shardingsphere.example.core.jdbc.service;
 
-import org.apache.shardingsphere.example.core.api.service.ExampleService;
 import org.apache.shardingsphere.example.core.api.entity.User;
 import org.apache.shardingsphere.example.core.api.repository.UserRepository;
+import org.apache.shardingsphere.example.core.api.service.ExampleService;
+import org.apache.shardingsphere.example.core.api.trace.DatabaseAccess;
 import org.apache.shardingsphere.example.core.api.trace.MemoryLogService;
 
 import java.sql.SQLException;
@@ -27,10 +28,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class UserServiceImpl implements ExampleService {
-
-    private MemoryLogService memoryLogService = new MemoryLogService();
-
+    
     private final UserRepository userRepository;
+    
+    private MemoryLogService memoryLogService = new MemoryLogService();
+    
     
     public UserServiceImpl(final UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -74,6 +76,7 @@ public final class UserServiceImpl implements ExampleService {
             user.setUserName("test_" + i);
             user.setPwd("pwd" + i);
             userRepository.insert(user);
+            memoryLogService.putUserData(DatabaseAccess.INSERT, user);
             result.add((long) user.getUserId());
         }
         return result;
@@ -91,9 +94,10 @@ public final class UserServiceImpl implements ExampleService {
         System.out.println("---------------------------- Print User Data -----------------------");
         for (Object each : userRepository.selectAll()) {
             System.out.println(each);
+            memoryLogService.putUserData(DatabaseAccess.SELECT, (User) each);
         }
     }
-
+    
     @Override
     public MemoryLogService getMemoryLogService() {
         return memoryLogService;
