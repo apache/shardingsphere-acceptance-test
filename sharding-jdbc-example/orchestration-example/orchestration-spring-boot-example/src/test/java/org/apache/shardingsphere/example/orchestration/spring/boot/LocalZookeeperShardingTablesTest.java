@@ -30,8 +30,8 @@ import java.sql.SQLException;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = SpringBootWithRegisterCenterTestMain.class)
-@ActiveProfiles("local-zookeeper-sharding-databases")
-public class ZookeeperShardingDatabasesTest {
+@ActiveProfiles("local-zookeeper-sharding-tables")
+public class LocalZookeeperShardingTablesTest {
     
     @Autowired
     private SpringPojoService commonService;
@@ -40,6 +40,6 @@ public class ZookeeperShardingDatabasesTest {
     public void assertCommonService() throws SQLException {
         AnnotationCommonServiceScenario scenario = new AnnotationCommonServiceScenario(commonService);
         scenario.process();
-        SpringResultAssertUtils.assertMasterSlaveResult(commonService);
+        SpringResultAssertUtils.assertShardingTableResult(commonService);
     }
 }

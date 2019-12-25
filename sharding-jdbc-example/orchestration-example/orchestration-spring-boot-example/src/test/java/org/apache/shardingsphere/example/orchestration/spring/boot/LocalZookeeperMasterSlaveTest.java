@@ -31,7 +31,7 @@ import java.sql.SQLException;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = SpringBootWithRegisterCenterTestMain.class)
 @ActiveProfiles("local-zookeeper-master-slave")
-public class ZookeeperMasterSlaveTest {
+public class LocalZookeeperMasterSlaveTest {
     
     @Autowired
     private SpringPojoService commonService;
