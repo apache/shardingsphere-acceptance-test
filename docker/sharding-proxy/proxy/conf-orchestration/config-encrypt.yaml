@@ -62,30 +62,30 @@
 #
 ######################################################################################################
 #
-#schemaName: encrypt_db
-#
-#dataSource:
-#  url: jdbc:mysql://sharding-proxy-mysql:3306/demo_ds?serverTimezone=UTC&useSSL=false
-#  username: root
-#  password:
-#  connectionTimeoutMilliseconds: 30000
-#  idleTimeoutMilliseconds: 60000
-#  maxLifetimeMilliseconds: 1800000
-#  maxPoolSize: 50
-#
-#encryptRule:
-#  encryptors:
-#    encryptor_aes:
-#      type: aes
-#      props:
-#        aes.key.value: 123456abc
-#    encryptor_md5:
-#      type: md5
-#  tables:
-#    t_user:
-#      columns:
-#        user_name:
-#          plainColumn: user_name
-#          cipherColumn: user_name_plain
-#          encryptor: encryptor_aes
+schemaName: encrypt_db
+
+dataSource:
+  url: jdbc:mysql://sharding-proxy-mysql:3306/demo_ds?serverTimezone=UTC&useSSL=false
+  username: root
+  password:
+  connectionTimeoutMilliseconds: 30000
+  idleTimeoutMilliseconds: 60000
+  maxLifetimeMilliseconds: 1800000
+  maxPoolSize: 50
+
+encryptRule:
+  encryptors:
+    encryptor_aes:
+      type: aes
+      props:
+        aes.key.value: 123456abc
+    encryptor_md5:
+      type: md5
+  tables:
+    t_user:
+      columns:
+        user_name:
+          plainColumn: user_name
+          cipherColumn: user_name_plain
+          encryptor: encryptor_aes
        
