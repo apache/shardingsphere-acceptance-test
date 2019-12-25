@@ -37,7 +37,6 @@ public class SpringBootShardingTablesTest {
     @Autowired
     private SpringPojoService commonService;
     
-    
     @Test
     public void assertCommonService() throws SQLException {
         AnnotationCommonServiceScenario scenario = new AnnotationCommonServiceScenario(commonService);
