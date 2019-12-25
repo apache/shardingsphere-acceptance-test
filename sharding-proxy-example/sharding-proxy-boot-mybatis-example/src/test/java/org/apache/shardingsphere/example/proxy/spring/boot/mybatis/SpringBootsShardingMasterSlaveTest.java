@@ -22,7 +22,8 @@ public class SpringBootsShardingMasterSlaveTest {
     
     @Test
     public void assertCommonService() throws SQLException {
-        AnnotationCommonServiceScenario.process1(commonService);
+        AnnotationCommonServiceScenario scenario = new AnnotationCommonServiceScenario(commonService);
+        scenario.process();
         SpringResultAssertUtils.assertShardingMasterSlaveResult(commonService);
     }
 }

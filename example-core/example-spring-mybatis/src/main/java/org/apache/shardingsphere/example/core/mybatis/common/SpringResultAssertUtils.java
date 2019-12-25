@@ -62,9 +62,9 @@ public class SpringResultAssertUtils implements AssertUtils {
     public static void assertShardingMasterSlaveResult(final  CommonService commonService) {
         MemoryLogService memoryLogService = commonService.getMemoryLogService();
         assertThat(memoryLogService.getOrderData(DatabaseAccess.INSERT).size(), is(20));
-        assertThat(memoryLogService.getOrderData(DatabaseAccess.SELECT).size(), is(10));
+        assertThat(memoryLogService.getOrderData(DatabaseAccess.SELECT).size(), is(0));
         assertThat(memoryLogService.getOrderItemData(DatabaseAccess.INSERT).size(), is(20));
-        assertThat(memoryLogService.getOrderItemData(DatabaseAccess.SELECT).size(), is(10));
+        assertThat(memoryLogService.getOrderItemData(DatabaseAccess.SELECT).size(), is(0));
     }
     
     public static void assertEncryptResult(CommonService commonService) {
