@@ -16,5 +16,6 @@
     <modules>
         <module>sharding-proxy-boot-mybatis-example</module>
         <module>sharding-proxy-orchestration-boot-example</module>
+        <module>proxy-encrypt-raw-jdbc-example</module>
     </modules>
 </project>

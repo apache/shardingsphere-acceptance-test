@@ -7,5 +7,6 @@
         <mapper resource="META-INF/mappers/AddressMapper.xml"/>
         <mapper resource="META-INF/mappers/OrderMapper.xml"/>
         <mapper resource="META-INF/mappers/OrderItemMapper.xml"/>
+        <mapper resource="META-INF/mappers/UserMapper.xml"/>
     </mappers>
 </configuration>
