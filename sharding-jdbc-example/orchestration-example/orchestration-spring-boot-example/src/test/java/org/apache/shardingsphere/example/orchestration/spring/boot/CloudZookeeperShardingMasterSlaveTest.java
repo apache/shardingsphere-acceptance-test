@@ -27,6 +27,6 @@ public class CloudZookeeperShardingMasterSlaveTest {
     public void assertCommonService() throws SQLException {
         AnnotationCommonServiceScenario scenario = new AnnotationCommonServiceScenario(commonService);
         scenario.process();
-        SpringResultAssertUtils.assertShardingMasterSlaveResult(commonService);
+        SpringResultAssertUtils.assertMasterSlaveResult(commonService);
     }
 }
