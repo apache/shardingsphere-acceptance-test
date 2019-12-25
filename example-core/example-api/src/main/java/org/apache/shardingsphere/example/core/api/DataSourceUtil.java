@@ -27,6 +27,8 @@ public final class DataSourceUtil {
     
     private static final int PORT = 3306;
     
+    private static  final String LOCALHOST_PORT = "localhost:3307";
+    
     private static final String USER_NAME = "root";
     
     private static final String PASSWORD = "";
@@ -39,4 +41,14 @@ public final class DataSourceUtil {
         result.setPassword(PASSWORD);
         return result;
     }
+    
+    public static DataSource createDataSourceEncrypt(final String dataSourceName) {
+        HikariDataSource result = new HikariDataSource();
+        result.setDriverClassName(com.mysql.jdbc.Driver.class.getName());
+        result.setJdbcUrl(String.format("jdbc:mysql://%s/%s?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8", LOCALHOST_PORT, dataSourceName));
+        result.setUsername(USER_NAME);
+        result.setPassword(PASSWORD);
+        return result;
+    }
+    
 }
