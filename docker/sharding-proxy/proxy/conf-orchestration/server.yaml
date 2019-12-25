@@ -23,7 +23,7 @@
 
 orchestration:
  name: orchestration_ds
- overwrite: true
+ overwrite: false
  registry:
    type: zookeeper
    serverLists: sharding-proxy-zookeeper:2181
