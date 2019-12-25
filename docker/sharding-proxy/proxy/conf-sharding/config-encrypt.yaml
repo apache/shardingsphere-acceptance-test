@@ -82,12 +82,10 @@ encryptRule:
     encryptor_md5:
       type: md5
   tables:
-    t_encrypt:
+    t_user:
       columns:
-        user_id:
-          plainColumn: user_plain
-          cipherColumn: user_cipher
+        user_name:
+          plainColumn: user_name
+          cipherColumn: user_name_plain
           encryptor: encryptor_aes
-        order_id:
-          cipherColumn: order_cipher
-          encryptor: encryptor_md5
+       
