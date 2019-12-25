@@ -30,101 +30,101 @@
 #
 ######################################################################################################
 #
-schemaName: sharding_master_slave_encrypt_db
-
-dataSources:
-  ds_master_0:
-    url: jdbc:mysql://sharding-proxy-mysql:3306/demo_ds_master_0?serverTimezone=UTC&useSSL=false
-    username: root
-    password:
-    connectionTimeoutMilliseconds: 30000
-    idleTimeoutMilliseconds: 60000
-    maxLifetimeMilliseconds: 1800000
-    maxPoolSize: 65
-  ds_master_0_slave_0:
-    url: jdbc:mysql://sharding-proxy-mysql:3306/demo_ds_master_0_slave_0?serverTimezone=UTC&useSSL=false
-    username: root
-    password:
-    connectionTimeoutMilliseconds: 30000
-    idleTimeoutMilliseconds: 60000
-    maxLifetimeMilliseconds: 1800000
-    maxPoolSize: 65
-  ds_master_0_slave_1:
-    url: jdbc:mysql://sharding-proxy-mysql:3306/demo_ds_master_0_slave_1?serverTimezone=UTC&useSSL=false
-    username: root
-    password:
-    connectionTimeoutMilliseconds: 30000
-    idleTimeoutMilliseconds: 60000
-    maxLifetimeMilliseconds: 1800000
-    maxPoolSize: 65
-  ds_master_1:
-    url: jdbc:mysql://sharding-proxy-mysql:3306/demo_ds_master_1?serverTimezone=UTC&useSSL=false
-    username: root
-    password:
-    connectionTimeoutMilliseconds: 30000
-    idleTimeoutMilliseconds: 60000
-    maxLifetimeMilliseconds: 1800000
-    maxPoolSize: 65
-  ds_master_1_slave_0:
-    url: jdbc:mysql://sharding-proxy-mysql:3306/demo_ds_master_1_slave_0?serverTimezone=UTC&useSSL=false
-    username: root
-    password:
-    connectionTimeoutMilliseconds: 30000
-    idleTimeoutMilliseconds: 60000
-    maxLifetimeMilliseconds: 1800000
-    maxPoolSize: 65
-  ds_master_1_slave_1:
-    url: jdbc:mysql://sharding-proxy-mysql:3306/demo_ds_master_1_slave_1?serverTimezone=UTC&useSSL=false
-    username: root
-    password:
-    connectionTimeoutMilliseconds: 30000
-    idleTimeoutMilliseconds: 60000
-    maxLifetimeMilliseconds: 1800000
-    maxPoolSize: 65
-
-shardingRule:
-  tables:
-    t_user:
-      actualDataNodes: ds_${0..1}.t_user_${0..1}
-      databaseStrategy:
-        inline:
-          shardingColumn: user_id
-          algorithmExpression: ds_${user_id % 2}
-      tableStrategy:
-        inline:
-          shardingColumn: user_id
-          algorithmExpression: t_user_${user_id % 2}
-      keyGenerator:
-        type: SNOWFLAKE
-        column: user_id
-  defaultTableStrategy:
-    none:
-      
-  defaultDatabaseStrategy:
-    inline:
-      shardingColumn: user_id
-      algorithmExpression: ds_${user_id % 2}
-  masterSlaveRules:
-    ds_0:
-      masterDataSourceName: ds_master_0
-      slaveDataSourceNames: [ds_master_0_slave_0, ds_master_0_slave_1]
-      loadBalanceAlgorithmType: ROUND_ROBIN
-    ds_1:
-      masterDataSourceName: ds_master_1
-      slaveDataSourceNames: [ds_master_1_slave_0, ds_master_1_slave_1]
-      loadBalanceAlgorithmType: ROUND_ROBIN
-      
-  encryptRule:
-    encryptors:
-      encryptor_aes:
-        type: aes
-        props:
-          aes.key.value: 123456abc
-    tables:
-      t_user:
-        columns:
-          user_name:
-            plainColumn: user_name_plain
-            cipherColumn: user_name
-            encryptor: encryptor_aes
+#schemaName: sharding_master_slave_encrypt_db
+#
+#dataSources:
+#  ds_master_0:
+#    url: jdbc:mysql://sharding-proxy-mysql:3306/demo_ds_master_0?serverTimezone=UTC&useSSL=false
+#    username: root
+#    password:
+#    connectionTimeoutMilliseconds: 30000
+#    idleTimeoutMilliseconds: 60000
+#    maxLifetimeMilliseconds: 1800000
+#    maxPoolSize: 65
+#  ds_master_0_slave_0:
+#    url: jdbc:mysql://sharding-proxy-mysql:3306/demo_ds_master_0_slave_0?serverTimezone=UTC&useSSL=false
+#    username: root
+#    password:
+#    connectionTimeoutMilliseconds: 30000
+#    idleTimeoutMilliseconds: 60000
+#    maxLifetimeMilliseconds: 1800000
+#    maxPoolSize: 65
+#  ds_master_0_slave_1:
+#    url: jdbc:mysql://sharding-proxy-mysql:3306/demo_ds_master_0_slave_1?serverTimezone=UTC&useSSL=false
+#    username: root
+#    password:
+#    connectionTimeoutMilliseconds: 30000
+#    idleTimeoutMilliseconds: 60000
+#    maxLifetimeMilliseconds: 1800000
+#    maxPoolSize: 65
+#  ds_master_1:
+#    url: jdbc:mysql://sharding-proxy-mysql:3306/demo_ds_master_1?serverTimezone=UTC&useSSL=false
+#    username: root
+#    password:
+#    connectionTimeoutMilliseconds: 30000
+#    idleTimeoutMilliseconds: 60000
+#    maxLifetimeMilliseconds: 1800000
+#    maxPoolSize: 65
+#  ds_master_1_slave_0:
+#    url: jdbc:mysql://sharding-proxy-mysql:3306/demo_ds_master_1_slave_0?serverTimezone=UTC&useSSL=false
+#    username: root
+#    password:
+#    connectionTimeoutMilliseconds: 30000
+#    idleTimeoutMilliseconds: 60000
+#    maxLifetimeMilliseconds: 1800000
+#    maxPoolSize: 65
+#  ds_master_1_slave_1:
+#    url: jdbc:mysql://sharding-proxy-mysql:3306/demo_ds_master_1_slave_1?serverTimezone=UTC&useSSL=false
+#    username: root
+#    password:
+#    connectionTimeoutMilliseconds: 30000
+#    idleTimeoutMilliseconds: 60000
+#    maxLifetimeMilliseconds: 1800000
+#    maxPoolSize: 65
+#
+#shardingRule:
+#  tables:
+#    t_user:
+#      actualDataNodes: ds_${0..1}.t_user_${0..1}
+#      databaseStrategy:
+#        inline:
+#          shardingColumn: user_id
+#          algorithmExpression: ds_${user_id % 2}
+#      tableStrategy:
+#        inline:
+#          shardingColumn: user_id
+#          algorithmExpression: t_user_${user_id % 2}
+#      keyGenerator:
+#        type: SNOWFLAKE
+#        column: user_id
+#  defaultTableStrategy:
+#    none:
+#      
+#  defaultDatabaseStrategy:
+#    inline:
+#      shardingColumn: user_id
+#      algorithmExpression: ds_${user_id % 2}
+#  masterSlaveRules:
+#    ds_0:
+#      masterDataSourceName: ds_master_0
+#      slaveDataSourceNames: [ds_master_0_slave_0, ds_master_0_slave_1]
+#      loadBalanceAlgorithmType: ROUND_ROBIN
+#    ds_1:
+#      masterDataSourceName: ds_master_1
+#      slaveDataSourceNames: [ds_master_1_slave_0, ds_master_1_slave_1]
+#      loadBalanceAlgorithmType: ROUND_ROBIN
+#      
+#  encryptRule:
+#    encryptors:
+#      encryptor_aes:
+#        type: aes
+#        props:
+#          aes.key.value: 123456abc
+#    tables:
+#      t_user:
+#        columns:
+#          user_name:
+#            plainColumn: user_name_plain
+#            cipherColumn: user_name
+#            encryptor: encryptor_aes
         
