@@ -23,7 +23,7 @@ public class ShardingEncryptTest {
     
     @Test
     public void assertEncryptDatabases() throws SQLException {
-        DataSource dataSource = DataSourceUtil.createDataSourceEncrypt("encrypt_db");
+        DataSource dataSource = DataSourceUtil.createDataSourceEncrypt("sharding_encrypt");
         ExampleService exampleService = getExampleService(dataSource);
         ExampleExecuteTemplate.run(exampleService);
         SpringBootRawJdbcAssertUtils.assertEncrypt(exampleService);
