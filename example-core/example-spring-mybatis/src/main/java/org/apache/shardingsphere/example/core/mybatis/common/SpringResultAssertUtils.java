@@ -105,4 +105,10 @@ public class SpringResultAssertUtils implements AssertUtils {
         assertThat(memoryLogService.getUserData(DatabaseAccess.INSERT).size(), is(10));
         assertThat(memoryLogService.getUserData(DatabaseAccess.SELECT).size(), is(10));
     }
+    
+    public static void assertExampleServiceMasterSlaveEncryptResult(ExampleService exampleService) {
+        MemoryLogService memoryLogService = exampleService.getMemoryLogService();
+        assertThat(memoryLogService.getUserData(DatabaseAccess.INSERT).size(), is(10));
+        assertThat(memoryLogService.getUserData(DatabaseAccess.SELECT).size(), is(0));
+    }
 }
