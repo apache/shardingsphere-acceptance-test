@@ -19,6 +19,7 @@ package org.apache.shardingsphere.example.core.mybatis.common;
 
 
 import org.apache.shardingsphere.example.core.api.service.CommonService;
+import org.apache.shardingsphere.example.core.api.service.ExampleService;
 import org.apache.shardingsphere.example.core.api.service.TransactionService;
 import org.apache.shardingsphere.example.core.api.trace.AssertUtils;
 import org.apache.shardingsphere.example.core.api.trace.DatabaseAccess;
@@ -97,5 +98,11 @@ public class SpringResultAssertUtils implements AssertUtils {
         assertThat(memoryLogService.getOrderData(DatabaseAccess.SELECT).size(), is(0));
         assertThat(memoryLogService.getOrderItemData(DatabaseAccess.INSERT).size(), is(20));
         assertThat(memoryLogService.getOrderItemData(DatabaseAccess.SELECT).size(), is(0));
+    }
+    
+    public static void assertExampleServiceEncryptResult(ExampleService exampleService) {
+        MemoryLogService memoryLogService = exampleService.getMemoryLogService();
+        assertThat(memoryLogService.getUserData(DatabaseAccess.INSERT).size(), is(10));
+        assertThat(memoryLogService.getUserData(DatabaseAccess.SELECT).size(), is(10));
     }
 }
