@@ -20,6 +20,7 @@ package org.apache.shardingsphere.example.core.mybatis.service;
 import org.apache.shardingsphere.example.core.api.repository.UserRepository;
 import org.apache.shardingsphere.example.core.api.entity.User;
 import org.apache.shardingsphere.example.core.api.service.ExampleService;
+import org.apache.shardingsphere.example.core.api.trace.DatabaseAccess;
 import org.apache.shardingsphere.example.core.api.trace.MemoryLogService;
 import org.springframework.stereotype.Service;
 
@@ -66,6 +67,7 @@ public class UserServiceImpl implements ExampleService {
             user.setUserName("test_mybatis_" + i);
             user.setPwd("pwd_mybatis_" + i);
             userRepository.insert(user);
+            memoryLogService.putUserData(DatabaseAccess.INSERT , user);
             result.add((long) user.getUserId());
         }
         return result;
@@ -91,6 +93,7 @@ public class UserServiceImpl implements ExampleService {
         System.out.println("---------------------------- Print User Data -----------------------");
         for (Object each : userRepository.selectAll()) {
             System.out.println(each);
+            memoryLogService.putUserData(DatabaseAccess.SELECT , (User) each);
         }
     }
 
