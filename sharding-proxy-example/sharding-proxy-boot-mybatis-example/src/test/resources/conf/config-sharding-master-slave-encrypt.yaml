@@ -22,7 +22,7 @@
 #   
 # If you want to use encrypt, please refer to this file; 
 # if you want to use sharding, please refer to the config-sharding.yaml.
-# if you want to use master-slave, please refer to the config-master_slave.yaml.
+# if you want to use master-slave, please refer to the config-master-slave.yaml.
 # 
 ######################################################################################################
 #
@@ -33,7 +33,7 @@
 schemaName: sharding_master_slave_encrypt_db
 
 dataSources:
-  ds0:
+  ds_master_0:
     url: jdbc:mysql://localhost:3306/demo_ds_master_0?serverTimezone=UTC&useSSL=false
     username: root
     password:
@@ -41,7 +41,7 @@ dataSources:
     idleTimeoutMilliseconds: 60000
     maxLifetimeMilliseconds: 1800000
     maxPoolSize: 65
-  ds0_slave0:
+  ds_master_0_slave_0:
     url: jdbc:mysql://localhost:3306/demo_ds_master_0_slave_0?serverTimezone=UTC&useSSL=false
     username: root
     password:
@@ -49,7 +49,7 @@ dataSources:
     idleTimeoutMilliseconds: 60000
     maxLifetimeMilliseconds: 1800000
     maxPoolSize: 65
-  ds0_slave1:
+  ds_master_0_slave_1:
     url: jdbc:mysql://localhost:3306/demo_ds_master_0_slave_1?serverTimezone=UTC&useSSL=false
     username: root
     password:
@@ -57,7 +57,7 @@ dataSources:
     idleTimeoutMilliseconds: 60000
     maxLifetimeMilliseconds: 1800000
     maxPoolSize: 65
-  ds1:
+  ds_master_1:
     url: jdbc:mysql://localhost:3306/demo_ds_master_1?serverTimezone=UTC&useSSL=false
     username: root
     password:
@@ -65,7 +65,7 @@ dataSources:
     idleTimeoutMilliseconds: 60000
     maxLifetimeMilliseconds: 1800000
     maxPoolSize: 65
-  ds1_slave0:
+  ds_master_1_slave_0:
     url: jdbc:mysql://localhost:3306/demo_ds_master_1_slave_0?serverTimezone=UTC&useSSL=false
     username: root
     password:
@@ -73,7 +73,7 @@ dataSources:
     idleTimeoutMilliseconds: 60000
     maxLifetimeMilliseconds: 1800000
     maxPoolSize: 65
-  ds1_slave1:
+  ds_master_1_slave_1:
     url: jdbc:mysql://localhost:3306/demo_ds_master_1_slave_1?serverTimezone=UTC&useSSL=false
     username: root
     password:
@@ -84,68 +84,47 @@ dataSources:
 
 shardingRule:
   tables:
-    t_order:
-      actualDataNodes: ms_ds${0..1}.t_order_${0..1}
+    t_user:
+      actualDataNodes: ds_${0..1}.t_user_${0..1}
       databaseStrategy:
         inline:
           shardingColumn: user_id
-          algorithmExpression: ms_ds${user_id % 2}
+          algorithmExpression: ds_${user_id % 2}
       tableStrategy:
-        inline:
-          shardingColumn: order_id
-          algorithmExpression: t_order_${order_id % 2}
-      keyGenerator:
-        type: SNOWFLAKE
-        column: order_id
-    t_order_item:
-      actualDataNodes: ms_ds${0..1}.t_order_item_${0..1}
-      databaseStrategy:
         inline:
           shardingColumn: user_id
-          algorithmExpression: ms_ds${user_id % 2}
-      tableStrategy:
-        inline:
-          shardingColumn: order_id
-          algorithmExpression: t_order_item_${order_id % 2}
+          algorithmExpression: t_user_${user_id % 2}
       keyGenerator:
         type: SNOWFLAKE
-        column: order_item_id
-  bindingTables:
-    - t_order,t_order_item
-
-  defaultDataSourceName: ds0
+        column: user_id
   defaultTableStrategy:
     none:
-
+      
+  defaultDatabaseStrategy:
+    inline:
+      shardingColumn: user_id
+      algorithmExpression: ds_${user_id % 2}
   masterSlaveRules:
-    ms_ds0:
-      masterDataSourceName: ds0
-      slaveDataSourceNames:
-        - ds0_slave0
-        - ds0_slave1
+    ds_0:
+      masterDataSourceName: ds_master_0
+      slaveDataSourceNames: [ds_master_0_slave_0, ds_master_0_slave_1]
       loadBalanceAlgorithmType: ROUND_ROBIN
-    ms_ds1:
-      masterDataSourceName: ds1
-      slaveDataSourceNames:
-        - ds1_slave0
-        - ds1_slave1
+    ds_1:
+      masterDataSourceName: ds_master_1
+      slaveDataSourceNames: [ds_master_1_slave_0, ds_master_1_slave_1]
       loadBalanceAlgorithmType: ROUND_ROBIN
       
-encryptRule:
-  encryptors:
-    encryptor_aes:
-      type: aes
-      props:
-        aes.key.value: 123456abc
-    encryptor_md5:
-      type: md5
-  tables:
-    t_order:
-      columns:
-        user_id:
-          plainColumn: user_plain
-          cipherColumn: user_cipher
-          encryptor: encryptor_aes
-        order_id:
-          cipherColumn: order_cipher
-          encryptor: encryptor_md5
+  encryptRule:
+    encryptors:
+      encryptor_aes:
+        type: aes
+        props:
+          aes.key.value: 123456abc
+    tables:
+      t_user:
+        columns:
+          user_name:
+            plainColumn: user_name_plain
+            cipherColumn: user_name
+            encryptor: encryptor_aes
+        
