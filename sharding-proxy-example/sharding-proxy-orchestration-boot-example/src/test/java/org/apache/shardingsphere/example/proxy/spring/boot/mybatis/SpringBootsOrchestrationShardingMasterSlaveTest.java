@@ -15,7 +15,7 @@ import java.sql.SQLException;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = SpringBootTestMain.class)
 @ActiveProfiles("sharding-master-slave")
-public class SpringBootsShardingMasterSlaveTest {
+public class SpringBootsOrchestrationShardingMasterSlaveTest {
     
     @Autowired
     private SpringPojoService commonService;

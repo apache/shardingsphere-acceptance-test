@@ -31,7 +31,7 @@ import java.sql.SQLException;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = SpringBootTestMain.class)
 @ActiveProfiles("master-slave")
-public class SpringBootMasterSlaveTest {
+public class SpringBootOrchestrationMasterSlaveTest {
     
     @Autowired
     private SpringPojoService commonService;
