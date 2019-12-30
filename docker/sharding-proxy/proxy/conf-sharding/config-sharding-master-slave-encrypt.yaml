@@ -99,11 +99,9 @@ shardingRule:
         column: user_id
   defaultTableStrategy:
     none:
-      
   defaultDatabaseStrategy:
-    inline:
-      shardingColumn: user_id
-      algorithmExpression: ds_${user_id % 2}
+    none:
+
   masterSlaveRules:
     ds_0:
       masterDataSourceName: ds_master_0
@@ -113,18 +111,20 @@ shardingRule:
       masterDataSourceName: ds_master_1
       slaveDataSourceNames: [ds_master_1_slave_0, ds_master_1_slave_1]
       loadBalanceAlgorithmType: ROUND_ROBIN
-      
+
   encryptRule:
     encryptors:
       encryptor_aes:
         type: aes
         props:
           aes.key.value: 123456abc
+      encryptor_md5:
+        type: md5
     tables:
       t_user:
         columns:
           user_name:
             plainColumn: user_name_plain
             cipherColumn: user_name
-            encryptor: encryptor_aes
+            encryptor: encryptor_md5
         
