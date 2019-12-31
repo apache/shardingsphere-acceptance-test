@@ -43,10 +43,10 @@ public final class UserEntity extends User {
         return super.getUserName();
     }
     
-    @Column(name = "user_name_plain")
+    @Column(name = "user_name_cipher")
     @Override
-    public String getUserNamePlain() {
-        return super.getUserNamePlain();
+    public String getUserNameCipher() {
+        return super.getUserNameCipher();
     }
     
     @Column(name = "pwd")
@@ -55,9 +55,9 @@ public final class UserEntity extends User {
         return super.getPwd();
     }
     
-    @Column(name = "assisted_query_pwd")
+    @Column(name = "pwdCipher")
     @Override
-    public String getAssistedQueryPwd() {
-        return super.getAssistedQueryPwd();
+    public String getPwdCipher() {
+        return super.getPwdCipher();
     }
 }

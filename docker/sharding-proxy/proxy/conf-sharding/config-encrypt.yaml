@@ -65,7 +65,7 @@
 schemaName: encrypt_db
 
 dataSource:
-  url: jdbc:mysql://sharding-proxy-mysql:3306/demo_ds?serverTimezone=UTC&useSSL=false
+  url: jdbc:mysql://localhost:3306/demo_ds?serverTimezone=UTC&useSSL=false
   username: root
   password:
   connectionTimeoutMilliseconds: 30000
@@ -85,7 +85,11 @@ encryptRule:
     t_user:
       columns:
         user_name:
-          plainColumn: user_name_plain
-          cipherColumn: user_name
+          plainColumn: user_name
+          cipherColumn: user_name_cipher
           encryptor: encryptor_md5
-       
+          
+        pwd:
+          plainColumn: pwd_plain
+          cipherColumn: pwd_cipher
+          encryptor: encryptor_md5

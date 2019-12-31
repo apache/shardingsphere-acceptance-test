@@ -18,7 +18,7 @@ import java.sql.SQLException;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = SpringBootWithRegisterCenterTestMain.class)
 @ActiveProfiles("cloud-zookeeper-sharding-databases-tables")
-public class CloudZookeeperShardingTableDatabasesTest {
+public class CloudZookeeperShardingDatabasesTablesTest {
     
     @Autowired
     private SpringPojoService commonService;

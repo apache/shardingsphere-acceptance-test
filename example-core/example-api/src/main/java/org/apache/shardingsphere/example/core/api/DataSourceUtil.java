@@ -18,8 +18,13 @@
 package org.apache.shardingsphere.example.core.api;
 
 import com.zaxxer.hikari.HikariDataSource;
+import org.apache.shardingsphere.shardingjdbc.api.yaml.YamlEncryptDataSourceFactory;
+import org.apache.shardingsphere.shardingjdbc.api.yaml.YamlShardingDataSourceFactory;
 
 import javax.sql.DataSource;
+import java.io.File;
+import java.io.IOException;
+import java.sql.SQLException;
 
 public final class DataSourceUtil {
     
@@ -42,13 +47,17 @@ public final class DataSourceUtil {
         return result;
     }
     
-    public static DataSource createDataSourceEncrypt(final String dataSourceName) {
+    public static DataSource createDataSourceWithShardingProxy(final String dataSourceName) {
         HikariDataSource result = new HikariDataSource();
         result.setDriverClassName(com.mysql.jdbc.Driver.class.getName());
         result.setJdbcUrl(String.format("jdbc:mysql://%s/%s?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8", LOCALHOST_PORT, dataSourceName));
         result.setUsername(USER_NAME);
         result.setPassword(PASSWORD);
         return result;
+    }
+
+    public static DataSource createDataSourceWithYamlConfig(final String yamlFilePath, Class c) throws IOException, SQLException {
+        return YamlShardingDataSourceFactory.createDataSource(new File(c.getResource(yamlFilePath).getFile()));
     }
     
 }

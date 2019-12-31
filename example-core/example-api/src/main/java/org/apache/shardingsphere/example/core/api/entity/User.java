@@ -27,54 +27,64 @@ public class User implements Serializable {
     
     private String userName;
     
-    private String userNamePlain;
+    private String userNameCipher;
     
     private String pwd;
-    
-    private String assistedQueryPwd;
-    
+
+    private String pwdPlain;
+
+    private String pwdCipher;
+
     public int getUserId() {
         return userId;
     }
-    
-    public void setUserId(final int userId) {
+
+    public void setUserId(int userId) {
         this.userId = userId;
     }
-    
+
     public String getUserName() {
         return userName;
     }
-    
-    public void setUserName(final String userName) {
+
+    public void setUserName(String userName) {
         this.userName = userName;
     }
-    
-    public String getUserNamePlain() {
-        return userNamePlain;
+
+    public String getUserNameCipher() {
+        return userNameCipher;
     }
-    
-    public void setUserNamePlain(final String userNamePlain) {
-        this.userNamePlain = userNamePlain;
+
+    public void setUserNameCipher(String userNameCipher) {
+        this.userNameCipher = userNameCipher;
     }
-    
+
     public String getPwd() {
         return pwd;
     }
-    
-    public void setPwd(final String pwd) {
+
+    public void setPwd(String pwd) {
         this.pwd = pwd;
     }
-    
-    public String getAssistedQueryPwd() {
-        return assistedQueryPwd;
+
+    public String getPwdPlain() {
+        return pwdPlain;
     }
-    
-    public void setAssistedQueryPwd(final String assistedQueryPwd) {
-        this.assistedQueryPwd = assistedQueryPwd;
+
+    public void setPwdPlain(String pwdPlain) {
+        this.pwdPlain = pwdPlain;
     }
-    
+
+    public String getPwdCipher() {
+        return pwdCipher;
+    }
+
+    public void setPwdCipher(String pwdCipher) {
+        this.pwdCipher = pwdCipher;
+    }
+
     @Override
     public String toString() {
-        return String.format("user_id: %d, user_name: %s, user_name_plain: %s, pwd: %s, assisted_query_pwd: %s", userId, userName, userNamePlain, pwd, assistedQueryPwd);
+        return String.format("user_id: %d, user_name: %s, userNameCipher: %s, pwd: %s, pwdCipher: %s", userId, userName, userNameCipher, pwd, pwdCipher);
     }
 }
