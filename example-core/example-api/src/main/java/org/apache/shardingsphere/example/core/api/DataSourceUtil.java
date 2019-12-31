@@ -19,7 +19,11 @@ package org.apache.shardingsphere.example.core.api;
 
 import com.zaxxer.hikari.HikariDataSource;
 import org.apache.shardingsphere.shardingjdbc.api.yaml.YamlEncryptDataSourceFactory;
+import org.apache.shardingsphere.shardingjdbc.api.yaml.YamlMasterSlaveDataSourceFactory;
 import org.apache.shardingsphere.shardingjdbc.api.yaml.YamlShardingDataSourceFactory;
+import org.apache.shardingsphere.shardingjdbc.orchestration.api.yaml.YamlOrchestrationEncryptDataSourceFactory;
+import org.apache.shardingsphere.shardingjdbc.orchestration.api.yaml.YamlOrchestrationMasterSlaveDataSourceFactory;
+import org.apache.shardingsphere.shardingjdbc.orchestration.api.yaml.YamlOrchestrationShardingDataSourceFactory;
 
 import javax.sql.DataSource;
 import java.io.File;
@@ -56,8 +60,28 @@ public final class DataSourceUtil {
         return result;
     }
 
-    public static DataSource createDataSourceWithYamlConfig(final String yamlFilePath, Class c) throws IOException, SQLException {
-        return YamlShardingDataSourceFactory.createDataSource(new File(c.getResource(yamlFilePath).getFile()));
+    public static DataSource createDataSourceWithYamlConfig(final String yamlFilePath, Class c, SceneType sceneType) throws IOException, SQLException {
+        switch (sceneType){
+            case ENCRYPT_ONLY:
+                return YamlEncryptDataSourceFactory.createDataSource(new File(c.getResource(yamlFilePath).getFile()));
+            case MASTER_SLAVE_ONLY:
+                return YamlMasterSlaveDataSourceFactory.createDataSource(new File(c.getResource(yamlFilePath).getFile()));
+            case SHARDING_ONLY:
+            case SHARDING_ENCRYPT:
+            case SHARDING_MASTER_SLAVE:
+            case SHARDING_MASTER_SLAVE_ENCRYPT:
+                return YamlShardingDataSourceFactory.createDataSource(new File(c.getResource(yamlFilePath).getFile()));
+            case ORCHESTRATION_ENCRYPT_ONLY:
+                return YamlOrchestrationEncryptDataSourceFactory.createDataSource(new File(c.getResource(yamlFilePath).getFile()));
+            case ORCHESTRATION_MASTER_SLAVE_ONLY:
+                return YamlOrchestrationMasterSlaveDataSourceFactory.createDataSource(new File(c.getResource(yamlFilePath).getFile()));
+            case ORCHESTRATION_SHARDING_ONLY:
+            case ORCHESTRATION_SHARDING_ENCRYPT:
+            case ORCHESTRATION_SHARDING_MASTER_SLAVE:
+            case ORCHESTRATION_SHARDING_MASTER_SLAVE_ENCRYPT:
+                return YamlOrchestrationShardingDataSourceFactory.createDataSource(new File(c.getResource(yamlFilePath).getFile()));
+        }
+        return null;
     }
     
 }
