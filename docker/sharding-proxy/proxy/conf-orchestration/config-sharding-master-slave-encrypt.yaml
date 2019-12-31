@@ -34,7 +34,7 @@ schemaName: sharding_master_slave_encrypt_db
 
 dataSources:
  ds_master_0:
-   url: jdbc:mysql://localhost:3306/demo_ds_master_0?serverTimezone=UTC&useSSL=false
+   url: jdbc:mysql://sharding-proxy-mysql:3306/demo_ds_master_0?serverTimezone=UTC&useSSL=false
    username: root
    password:
    connectionTimeoutMilliseconds: 30000
@@ -42,7 +42,7 @@ dataSources:
    maxLifetimeMilliseconds: 1800000
    maxPoolSize: 65
  ds_master_0_slave_0:
-   url: jdbc:mysql://localhost:3306/demo_ds_master_0_slave_0?serverTimezone=UTC&useSSL=false
+   url: jdbc:mysql://sharding-proxy-mysql:3306/demo_ds_master_0_slave_0?serverTimezone=UTC&useSSL=false
    username: root
    password:
    connectionTimeoutMilliseconds: 30000
@@ -50,7 +50,7 @@ dataSources:
    maxLifetimeMilliseconds: 1800000
    maxPoolSize: 65
  ds_master_0_slave_1:
-   url: jdbc:mysql://localhost:3306/demo_ds_master_0_slave_1?serverTimezone=UTC&useSSL=false
+   url: jdbc:mysql://sharding-proxy-mysql:3306/demo_ds_master_0_slave_1?serverTimezone=UTC&useSSL=false
    username: root
    password:
    connectionTimeoutMilliseconds: 30000
@@ -58,7 +58,7 @@ dataSources:
    maxLifetimeMilliseconds: 1800000
    maxPoolSize: 65
  ds_master_1:
-   url: jdbc:mysql://localhost:3306/demo_ds_master_1?serverTimezone=UTC&useSSL=false
+   url: jdbc:mysql://sharding-proxy-mysql:3306/demo_ds_master_1?serverTimezone=UTC&useSSL=false
    username: root
    password:
    connectionTimeoutMilliseconds: 30000
@@ -66,7 +66,7 @@ dataSources:
    maxLifetimeMilliseconds: 1800000
    maxPoolSize: 65
  ds_master_1_slave_0:
-   url: jdbc:mysql://localhost:3306/demo_ds_master_1_slave_0?serverTimezone=UTC&useSSL=false
+   url: jdbc:mysql://sharding-proxy-mysql:3306/demo_ds_master_1_slave_0?serverTimezone=UTC&useSSL=false
    username: root
    password:
    connectionTimeoutMilliseconds: 30000
@@ -74,7 +74,7 @@ dataSources:
    maxLifetimeMilliseconds: 1800000
    maxPoolSize: 65
  ds_master_1_slave_1:
-   url: jdbc:mysql://localhost:3306/demo_ds_master_1_slave_1?serverTimezone=UTC&useSSL=false
+   url: jdbc:mysql://sharding-proxy-mysql:3306/demo_ds_master_1_slave_1?serverTimezone=UTC&useSSL=false
    username: root
    password:
    connectionTimeoutMilliseconds: 30000
