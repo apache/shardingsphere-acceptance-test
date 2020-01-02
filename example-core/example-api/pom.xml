@@ -24,9 +24,5 @@
             <groupId>org.apache.shardingsphere</groupId>
             <artifactId>sharding-jdbc-core</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.apache.shardingsphere</groupId>
-            <artifactId>sharding-jdbc-orchestration</artifactId>
-        </dependency>
     </dependencies>
 </project>
