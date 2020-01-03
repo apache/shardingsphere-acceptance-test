@@ -21,5 +21,5 @@ sudo sed -i "s/localhost:3307/${ip}:${PORT_PROXY_SHARDING}/g" `grep localhost:33
 sudo sed -i "s/localhost:3307/${ip}:${PORT_PROXY_ORCH}/g" `grep localhost:3307 -rl sharding-proxy-example/sharding-proxy-orchestration-boot-example/`
 sudo sed -i "s/localhost:2181/${ip}:${PORT_PROXY_ZK}/g" `grep localhost:2181 -rl sharding-proxy-example/`
 sudo chmod 777 docker/tools/wait-for-it.sh
-sudo bash docker/tools/wait-for-it.sh ${ip}:${PORT_PROXY_SHARDING} -- echo "sharding-proxy is available!"
-sudo bash docker/tools/wait-for-it.sh ${ip}:${PORT_PROXY_ORCH} -- echo "orchestration-proxy is available!"
+sudo bash docker/tools/wait-for-it.sh ${ip}:${PORT_PROXY_SHARDING} -- echo "sharding-proxy"
+sudo bash docker/tools/wait-for-it.sh ${ip}:${PORT_PROXY_ORCH} -- echo "orchestration-proxy"
