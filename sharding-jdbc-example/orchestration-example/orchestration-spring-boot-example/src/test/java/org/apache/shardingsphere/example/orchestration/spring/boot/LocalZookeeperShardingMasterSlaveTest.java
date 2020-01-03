@@ -30,7 +30,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.sql.SQLException;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = SpringBootWithRegisterCenterTestMain.class)
+@SpringBootTest(classes = SpringBootWithRegistryCenterTestMain.class)
 @ActiveProfiles("local-zookeeper-sharding-master-slave")
 public class LocalZookeeperShardingMasterSlaveTest {
     

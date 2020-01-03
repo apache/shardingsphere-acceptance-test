@@ -16,7 +16,7 @@ import java.sql.SQLException;
  * @author linzesi
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = SpringBootWithRegisterCenterTestMain.class)
+@SpringBootTest(classes = SpringBootWithRegistryCenterTestMain.class)
 @ActiveProfiles("cloud-zookeeper-sharding-master-slave")
 public class CloudZookeeperShardingMasterSlaveTest {
     

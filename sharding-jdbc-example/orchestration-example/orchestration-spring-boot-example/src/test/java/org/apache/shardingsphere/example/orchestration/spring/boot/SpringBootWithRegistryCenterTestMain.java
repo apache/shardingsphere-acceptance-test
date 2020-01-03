@@ -26,9 +26,9 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan("org.apache.shardingsphere.example.core.mybatis")
 @MapperScan(basePackages = "org.apache.shardingsphere.example.core.mybatis.repository")
 @SpringBootApplication(exclude = JtaAutoConfiguration.class)
-public class SpringBootWithRegisterCenterTestMain {
+public class SpringBootWithRegistryCenterTestMain {
     
     public static void main(final String[] args) {
-        SpringApplication.run(SpringBootWithRegisterCenterTestMain.class, args);
+        SpringApplication.run(SpringBootWithRegistryCenterTestMain.class, args);
     }
 }

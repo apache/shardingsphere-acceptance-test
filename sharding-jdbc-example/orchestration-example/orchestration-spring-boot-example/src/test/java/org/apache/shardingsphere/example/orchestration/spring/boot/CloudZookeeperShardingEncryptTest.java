@@ -30,7 +30,7 @@ import javax.annotation.Resource;
 import java.sql.SQLException;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = SpringBootWithRegisterCenterTestMain.class)
+@SpringBootTest(classes = SpringBootWithRegistryCenterTestMain.class)
 @ActiveProfiles("cloud-zookeeper-sharding-encrypt")
 public class CloudZookeeperShardingEncryptTest {
 
