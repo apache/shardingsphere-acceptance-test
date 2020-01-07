@@ -65,7 +65,7 @@
 schemaName: encrypt_db
 
 dataSource:
-  url: jdbc:mysql://jdbc-mysql:3306/demo_ds?serverTimezone=UTC&useSSL=false
+  url: jdbc:mysql://proxy-mysql:3306/demo_ds?serverTimezone=UTC&useSSL=false
   username: root
   password:
   connectionTimeoutMilliseconds: 30000
