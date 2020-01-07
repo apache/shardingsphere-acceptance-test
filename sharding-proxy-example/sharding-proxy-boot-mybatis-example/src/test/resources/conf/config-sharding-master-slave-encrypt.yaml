@@ -99,7 +99,7 @@ shardingRule:
         column: user_id
   defaultTableStrategy:
     none:
-      
+
   defaultDatabaseStrategy:
     inline:
       shardingColumn: user_id
@@ -113,7 +113,7 @@ shardingRule:
       masterDataSourceName: ds_master_1
       slaveDataSourceNames: [ds_master_1_slave_0, ds_master_1_slave_1]
       loadBalanceAlgorithmType: ROUND_ROBIN
-      
+
   encryptRule:
     encryptors:
       encryptor_aes:

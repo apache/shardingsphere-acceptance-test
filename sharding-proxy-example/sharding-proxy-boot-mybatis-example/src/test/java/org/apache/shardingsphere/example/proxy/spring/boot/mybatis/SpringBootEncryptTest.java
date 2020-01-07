@@ -5,11 +5,7 @@ import org.apache.shardingsphere.example.core.api.service.ExampleService;
 import org.apache.shardingsphere.example.core.mybatis.common.SpringResultAssertUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -29,7 +25,7 @@ public class SpringBootEncryptTest {
     
     @Test
     public void commonService() throws SQLException {
-            ExampleExecuteTemplate.run(exampleService);
-            SpringResultAssertUtils.assertExampleServiceEncryptResult(exampleService);
+        ExampleExecuteTemplate.run(exampleService);
+        SpringResultAssertUtils.assertExampleServiceEncryptResult(exampleService);
     }
 }

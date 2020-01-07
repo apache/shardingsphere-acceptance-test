@@ -130,7 +130,7 @@ shardingRule:
         - ds1_slave0
         - ds1_slave1
       loadBalanceAlgorithmType: ROUND_ROBIN
-      
+
 encryptRule:
   encryptors:
     encryptor_aes:
