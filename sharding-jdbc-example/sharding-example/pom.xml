@@ -14,6 +14,6 @@
     <packaging>pom</packaging>
     
     <modules>
-        <module>sharding-spring-boot-mybatis-example</module>
+        <module>sharding-spring-boot-mybatis-mysql-example</module>
     </modules>
 </project>

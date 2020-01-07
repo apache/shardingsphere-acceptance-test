@@ -10,7 +10,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>sharding-proxy-orchestration-boot-example</artifactId>
-
+    <name>Example::proxy::orchestration::mysql::spring-boot-mybatis</name>
+    
     <dependencies>
         <dependency>
             <groupId>org.apache.shardingsphere.example</groupId>
