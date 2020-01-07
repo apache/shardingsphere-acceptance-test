@@ -8,7 +8,7 @@
         <artifactId>sharding-proxy-example</artifactId>
         <version>4.0.0-RC4-SNAPSHOT</version>
     </parent>
-    <artifactId>sharding-proxy-boot-mybatis-example</artifactId>
+    <artifactId>sharding-proxy-boot-mybatis-mysql-example</artifactId>
     <name>Example::proxy::mysql::spring-boot-mybatis</name>
 
     <dependencies>

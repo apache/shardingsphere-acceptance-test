@@ -6,7 +6,7 @@ services:
     ## default port is 3306, you could change to 33060 or any other port doesn't conflict MySQL on your OS
     ports:
       - "3310:3306"
-    container_name: sharding-jdbc-mysql
+    container_name: jdbc-mysql
     ## launch mysql without password
     ## you could access the mysql in container by following command :
     ## docker exec -it sharding-sphere-mysql mysql -uroot
@@ -29,3 +29,16 @@ services:
     ports: 
      - "2188:2181"
     container_name: sharding-jdbc-zookeeper
+
+  jdbc-postgres:
+    image: postgres:11
+    ports:
+      - "5433:5432"
+    container_name: sharding-jdbc-postgres
+    environment:
+      POSTGRES_DB: shardingsphere
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD:
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - ../../../src/resources/manual_schema_postgres.sql:/docker-entrypoint-initdb.d/manual_schema_postgre.sql

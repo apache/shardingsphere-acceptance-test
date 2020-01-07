@@ -24,6 +24,7 @@ import org.apache.shardingsphere.example.core.api.service.TransactionService;
 import org.apache.shardingsphere.example.core.api.trace.AssertUtils;
 import org.apache.shardingsphere.example.core.api.trace.DatabaseAccess;
 import org.apache.shardingsphere.example.core.api.trace.MemoryLogService;
+import org.apache.shardingsphere.example.core.mybatis.service.SpringPojoService;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -57,7 +58,9 @@ public class SpringResultAssertUtils implements AssertUtils {
     public static void assertMasterSlaveResult(final CommonService commonService) {
         MemoryLogService memoryLogService = commonService.getMemoryLogService();
         assertThat(memoryLogService.getOrderData(DatabaseAccess.INSERT).size(), is(20));
+        assertThat(memoryLogService.getOrderData(DatabaseAccess.SELECT).size(), is(0));
         assertThat(memoryLogService.getOrderItemData(DatabaseAccess.INSERT).size(), is(20));
+        assertThat(memoryLogService.getOrderItemData(DatabaseAccess.SELECT).size(), is(0));
     }
     
     public static void assertShardingMasterSlaveResult(final  CommonService commonService) {
@@ -110,5 +113,12 @@ public class SpringResultAssertUtils implements AssertUtils {
         MemoryLogService memoryLogService = exampleService.getMemoryLogService();
         assertThat(memoryLogService.getUserData(DatabaseAccess.INSERT).size(), is(10));
         assertThat(memoryLogService.getUserData(DatabaseAccess.SELECT).size(), is(0));
+    }
+    
+    public static void assertTempPgShardingDatabaseAndTableResult(final CommonService commonService) {
+        MemoryLogService memoryLogService = commonService.getMemoryLogService();
+        assertThat(memoryLogService.getOrderData(DatabaseAccess.INSERT).size(), is(20));
+        assertThat(memoryLogService.getOrderData(DatabaseAccess.SELECT).size(), is(10));
+        assertThat(memoryLogService.getOrderItemData(DatabaseAccess.INSERT).size(), is(20));
     }
 }

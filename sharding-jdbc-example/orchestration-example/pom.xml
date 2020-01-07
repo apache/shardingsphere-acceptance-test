@@ -13,6 +13,7 @@
     <packaging>pom</packaging>
     
     <modules>
-        <module>orchestration-spring-boot-example</module>
+        <module>orchestration-spring-boot-mysql-example</module>
+        <module>orchestration-spring-boot-postgresql-example</module>
     </modules>
 </project>

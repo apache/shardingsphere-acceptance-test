@@ -1,0 +1,52 @@
+schemaName: sharding_encrypt
+
+dataSources:
+  ds_0:
+    url: jdbc:mysql://localhost:3306/demo_ds_0?serverTimezone=UTC&useSSL=false
+    username: root
+    password:
+    connectionTimeoutMilliseconds: 30000
+    idleTimeoutMilliseconds: 60000
+    maxLifetimeMilliseconds: 1800000
+    maxPoolSize: 50
+  ds_1:
+    url: jdbc:mysql://localhost:3306/demo_ds_1?serverTimezone=UTC&useSSL=false
+    username: root
+    password:
+    connectionTimeoutMilliseconds: 30000
+    idleTimeoutMilliseconds: 60000
+    maxLifetimeMilliseconds: 1800000
+    maxPoolSize: 50
+
+shardingRule:
+  tables:
+    t_user:
+      actualDataNodes: ds_${0..1}.t_user_${0..1}
+      tableStrategy:
+        inline:
+          shardingColumn: user_id
+          algorithmExpression: t_user_${user_id % 2}
+      databaseStrategy:
+        inline:
+          shardingColumn: user_id
+          algorithmExpression: ds_${user_id % 2}
+      keyGenerator:
+        type: SNOWFLAKE
+        column: user_id
+  defaultDatabaseStrategy:
+    none:
+  defaultTableStrategy:
+    none:
+  encryptRule:
+    encryptors:
+      encryptor_aes:
+        type: aes
+        props:
+          aes.key.value: 123456abc
+    tables:
+      t_user:
+        columns:
+          user_name:
+            plainColumn: user_name_plain
+            cipherColumn: assisted_query_pwd
+            encryptor: encryptor_aes
