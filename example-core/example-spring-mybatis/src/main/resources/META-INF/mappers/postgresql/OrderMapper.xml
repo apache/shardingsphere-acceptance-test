@@ -17,7 +17,7 @@
     </update>
     
     <update id="dropTable">
-        DROP TABLE IF EXISTS t_order;
+        DROP TABLE IF EXISTS t_order CASCADE;
     </update>
     
     <insert id="insert" useGeneratedKeys="true" keyProperty="orderId">
