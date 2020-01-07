@@ -34,7 +34,7 @@ services:
     image: postgres:11
     ports:
       - "5433:5432"
-    container_name: sharding-jdbc-postgres
+    container_name: jdbc-postgresql
     environment:
       POSTGRES_DB: shardingsphere
       POSTGRES_USER: postgres

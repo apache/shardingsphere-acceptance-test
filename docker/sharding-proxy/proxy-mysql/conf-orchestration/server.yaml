@@ -26,7 +26,7 @@ orchestration:
  overwrite: true
  registry:
    type: zookeeper
-   serverLists: sharding-proxy-zookeeper:2181
+   serverLists: sharding-proxy-zookeeper-mysql:2181
    namespace: orchestration
 
 
