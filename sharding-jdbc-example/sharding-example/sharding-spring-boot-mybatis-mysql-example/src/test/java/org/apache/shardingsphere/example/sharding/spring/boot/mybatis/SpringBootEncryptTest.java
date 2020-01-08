@@ -35,10 +35,10 @@ import java.sql.SQLException;
 public class SpringBootEncryptTest {
 
     @Resource(name = "encrypt")
-    ExampleService exampleService;
+    private ExampleService exampleService;
 
     @Test
-    public void commonService() throws SQLException {
+    public void assertCommonService() throws SQLException {
         ExampleExecuteTemplate.run(exampleService);
         SpringResultAssertUtils.assertExampleServiceEncryptResult(exampleService);
     }

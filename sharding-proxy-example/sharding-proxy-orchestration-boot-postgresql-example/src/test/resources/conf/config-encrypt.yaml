@@ -22,7 +22,7 @@
 #   
 # If you want to use encrypt, please refer to this file; 
 # if you want to use sharding, please refer to the config-sharding.yaml.
-# if you want to use master-slave, please refer to the config-master_slave.yaml.
+# if you want to use master-slave, please refer to the config-master-slave.yaml.
 # 
 ######################################################################################################
 #
@@ -65,8 +65,8 @@
 schemaName: encrypt_db
 
 dataSource:
-  url: jdbc:mysql://localhost:3306/demo_ds?serverTimezone=UTC&useSSL=false
-  username: root
+  url: jdbc:postgresql://localhost:5432/demo_ds?serverTimezone=UTC&useSSL=false
+  username: postgres
   password:
   connectionTimeoutMilliseconds: 30000
   idleTimeoutMilliseconds: 60000
@@ -82,12 +82,14 @@ encryptRule:
     encryptor_md5:
       type: md5
   tables:
-    t_encrypt:
+    t_user:
       columns:
-        user_id:
-          plainColumn: user_plain
-          cipherColumn: user_cipher
-          encryptor: encryptor_aes
-        order_id:
-          cipherColumn: order_cipher
+        user_name:
+          plainColumn: user_name
+          cipherColumn: user_name_cipher
+          encryptor: encryptor_md5
+
+        pwd:
+          plainColumn: pwd_plain
+          cipherColumn: pwd_cipher
           encryptor: encryptor_md5

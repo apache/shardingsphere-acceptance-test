@@ -34,7 +34,7 @@ schemaName: sharding_master_slave_encrypt_db
 
 dataSources:
   ds_master_0:
-    url: jdbc:postgresql://localhost:5432/shardingsphere?currentSchema=demo_ds_master_0
+    url: jdbc:postgresql://localhost:5432/demo_ds_master_0?serverTimezone=UTC&useSSL=false
     username: postgres
     password:
     connectionTimeoutMilliseconds: 30000
@@ -42,7 +42,7 @@ dataSources:
     maxLifetimeMilliseconds: 1800000
     maxPoolSize: 65
   ds_master_0_slave_0:
-    url: jdbc:postgresql://localhost:5432/shardingsphere?currentSchema=demo_ds_master_0_slave_0
+    url: jdbc:postgresql://localhost:5432/demo_ds_master_0_slave_0?serverTimezone=UTC&useSSL=false
     username: postgres
     password:
     connectionTimeoutMilliseconds: 30000
@@ -50,7 +50,7 @@ dataSources:
     maxLifetimeMilliseconds: 1800000
     maxPoolSize: 65
   ds_master_0_slave_1:
-    url: jdbc:postgresql://localhost:5432/shardingsphere?currentSchema=demo_ds_master_0_slave_1
+    url: jdbc:postgresql://localhost:5432/demo_ds_master_0_slave_1?serverTimezone=UTC&useSSL=false
     username: postgres
     password:
     connectionTimeoutMilliseconds: 30000
@@ -58,7 +58,7 @@ dataSources:
     maxLifetimeMilliseconds: 1800000
     maxPoolSize: 65
   ds_master_1:
-    url: jdbc:postgresql://localhost:5432/shardingsphere?currentSchema=demo_ds_master_1
+    url: jdbc:postgresql://localhost:5432/demo_ds_master_1?serverTimezone=UTC&useSSL=false
     username: postgres
     password:
     connectionTimeoutMilliseconds: 30000
@@ -66,7 +66,7 @@ dataSources:
     maxLifetimeMilliseconds: 1800000
     maxPoolSize: 65
   ds_master_1_slave_0:
-    url: jdbc:postgresql://localhost:5432/shardingsphere?currentSchema=demo_ds_master_1_slave_0
+    url: jdbc:postgresql://localhost:5432/demo_ds_master_1_slave_0?serverTimezone=UTC&useSSL=false
     username: postgres
     password:
     connectionTimeoutMilliseconds: 30000
@@ -74,7 +74,7 @@ dataSources:
     maxLifetimeMilliseconds: 1800000
     maxPoolSize: 65
   ds_master_1_slave_1:
-    url: jdbc:postgresql://localhost:5432/shardingsphere?currentSchema=demo_ds_master_1_slave_1
+    url: jdbc:postgresql://localhost:5432/demo_ds_master_1_slave_1?serverTimezone=UTC&useSSL=false
     username: postgres
     password:
     connectionTimeoutMilliseconds: 30000
@@ -99,11 +99,9 @@ shardingRule:
         column: user_id
   defaultTableStrategy:
     none:
-      
   defaultDatabaseStrategy:
-    inline:
-      shardingColumn: user_id
-      algorithmExpression: ds_${user_id % 2}
+    none:
+      
   masterSlaveRules:
     ds_0:
       masterDataSourceName: ds_master_0
@@ -113,18 +111,25 @@ shardingRule:
       masterDataSourceName: ds_master_1
       slaveDataSourceNames: [ds_master_1_slave_0, ds_master_1_slave_1]
       loadBalanceAlgorithmType: ROUND_ROBIN
-      
+
   encryptRule:
     encryptors:
       encryptor_aes:
         type: aes
         props:
           aes.key.value: 123456abc
+      encryptor_md5:
+        type: md5
     tables:
       t_user:
         columns:
           user_name:
-            plainColumn: user_name_plain
-            cipherColumn: user_name
-            encryptor: encryptor_aes
+            plainColumn: user_name
+            cipherColumn: user_name_cipher
+            encryptor: encryptor_md5
+
+          pwd:
+            plainColumn: pwd_plain
+            cipherColumn: pwd_cipher
+            encryptor: encryptor_md5
         

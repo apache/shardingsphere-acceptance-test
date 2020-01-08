@@ -2,7 +2,7 @@ schemaName: sharding_encrypt
 
 dataSources:
   ds_0:
-    url: jdbc:postgresql://localhost:5432/shardingsphere?currentSchema=demo_ds_0
+    url: jdbc:postgresql://localhost:5432/demo_ds_0?serverTimezone=UTC&useSSL=false
     username: postgres
     password:
     connectionTimeoutMilliseconds: 30000
@@ -10,7 +10,7 @@ dataSources:
     maxLifetimeMilliseconds: 1800000
     maxPoolSize: 50
   ds_1:
-    url: jdbc:postgresql://localhost:5432/shardingsphere?currentSchema=demo_ds_1
+    url: jdbc:postgresql://localhost:5432/demo_ds_1?serverTimezone=UTC&useSSL=false
     username: postgres
     password:
     connectionTimeoutMilliseconds: 30000
@@ -33,8 +33,6 @@ shardingRule:
       keyGenerator:
         type: SNOWFLAKE
         column: user_id
-  defaultDatabaseStrategy:
-    none:
   defaultTableStrategy:
     none:
   encryptRule:

@@ -65,7 +65,7 @@
 schemaName: encrypt_db
 
 dataSource:
-  url: jdbc:postgresql://localhost:5432/shardingsphere?currentSchema=demo_ds
+  url: jdbc:postgresql://localhost:5432/demo_ds?serverTimezone=UTC&useSSL=false
   username: postgres
   password:
   connectionTimeoutMilliseconds: 30000

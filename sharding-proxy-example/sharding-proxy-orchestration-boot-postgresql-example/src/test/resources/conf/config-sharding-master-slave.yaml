@@ -22,7 +22,7 @@
 #   
 # If you want to use encrypt, please refer to this file; 
 # if you want to use sharding, please refer to the config-sharding.yaml.
-# if you want to use master-slave, please refer to the config-master_slave.yaml.
+# if you want to use master-slave, please refer to the config-master-slave.yaml.
 # 
 ######################################################################################################
 #
@@ -34,48 +34,48 @@ schemaName: sharding_master_slave_db
 
 dataSources:
   ds0:
-    url: jdbc:mysql://localhost:3306/demo_ds_master_0?serverTimezone=UTC&useSSL=false
-    username: root
+    url: jdbc:postgresql://localhost:5432/demo_ds_master_0?serverTimezone=UTC&useSSL=false
+    username: postgres
     password:
     connectionTimeoutMilliseconds: 30000
     idleTimeoutMilliseconds: 60000
     maxLifetimeMilliseconds: 1800000
     maxPoolSize: 65
   ds0_slave0:
-    url: jdbc:mysql://localhost:3306/demo_ds_master_0_slave_0?serverTimezone=UTC&useSSL=false
-    username: root
+    url: jdbc:postgresql://localhost:5432/demo_ds_master_0_slave_0?serverTimezone=UTC&useSSL=false
+    username: postgres
     password:
     connectionTimeoutMilliseconds: 30000
     idleTimeoutMilliseconds: 60000
     maxLifetimeMilliseconds: 1800000
     maxPoolSize: 65
   ds0_slave1:
-    url: jdbc:mysql://localhost:3306/demo_ds_master_0_slave_1?serverTimezone=UTC&useSSL=false
-    username: root
+    url: jdbc:postgresql://localhost:5432/demo_ds_master_0_slave_1?serverTimezone=UTC&useSSL=false
+    username: postgres
     password:
     connectionTimeoutMilliseconds: 30000
     idleTimeoutMilliseconds: 60000
     maxLifetimeMilliseconds: 1800000
     maxPoolSize: 65
   ds1:
-    url: jdbc:mysql://localhost:3306/demo_ds_master_1?serverTimezone=UTC&useSSL=false
-    username: root
+    url: jdbc:postgresql://localhost:5432/demo_ds_master_1?serverTimezone=UTC&useSSL=false
+    username: postgres
     password:
     connectionTimeoutMilliseconds: 30000
     idleTimeoutMilliseconds: 60000
     maxLifetimeMilliseconds: 1800000
     maxPoolSize: 65
   ds1_slave0:
-    url: jdbc:mysql://localhost:3306/demo_ds_master_1_slave_0?serverTimezone=UTC&useSSL=false
-    username: root
+    url: jdbc:postgresql://localhost:5432/demo_ds_master_1_slave_0?serverTimezone=UTC&useSSL=false
+    username: postgres
     password:
     connectionTimeoutMilliseconds: 30000
     idleTimeoutMilliseconds: 60000
     maxLifetimeMilliseconds: 1800000
     maxPoolSize: 65
   ds1_slave1:
-    url: jdbc:mysql://localhost:3306/demo_ds_master_1_slave_1?serverTimezone=UTC&useSSL=false
-    username: root
+    url: jdbc:postgresql://localhost:5432/demo_ds_master_1_slave_1?serverTimezone=UTC&useSSL=false
+    username: postgres
     password:
     connectionTimeoutMilliseconds: 30000
     idleTimeoutMilliseconds: 60000

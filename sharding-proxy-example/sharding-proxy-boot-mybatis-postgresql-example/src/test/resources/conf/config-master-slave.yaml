@@ -70,7 +70,7 @@ schemaName: master_slave_db
 
 dataSources:
  master_ds:
-   url: jdbc:postgresql://localhost:5432/shardingsphere?currentSchema=demo_ds_master
+   url: jdbc:postgresql://localhost:5432/demo_ds_master?serverTimezone=UTC&useSSL=false
    username: postgres
    password: 
    connectionTimeoutMilliseconds: 30000
@@ -78,7 +78,7 @@ dataSources:
    maxLifetimeMilliseconds: 1800000
    maxPoolSize: 50
  slave_ds_0:
-   url: jdbc:postgresql://localhost:5432/shardingsphere?currentSchema=demo_ds_slave_0
+   url: jdbc:postgresql://localhost:5432/demo_ds_slave_0?serverTimezone=UTC&useSSL=false
    username: postgres
    password: 
    connectionTimeoutMilliseconds: 30000
@@ -86,7 +86,7 @@ dataSources:
    maxLifetimeMilliseconds: 1800000
    maxPoolSize: 50
  slave_ds_1:
-   url: jdbc:postgresql://localhost:5432/shardingsphere?currentSchema=demo_ds_slave_1
+   url: jdbc:postgresql://localhost:5432/demo_ds_slave_1?serverTimezone=UTC&useSSL=false
    username: postgres
    password: 
    connectionTimeoutMilliseconds: 30000

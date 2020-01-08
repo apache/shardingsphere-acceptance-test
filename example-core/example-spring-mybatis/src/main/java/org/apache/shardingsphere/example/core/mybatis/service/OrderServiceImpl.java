@@ -130,10 +130,12 @@ public class OrderServiceImpl implements ExampleService {
         System.out.println("---------------------------- Print Order Data -----------------------");
         for (Object each : orderRepository.selectAll()) {
             System.out.println(each);
+            memoryLogService.putOrderData(DatabaseAccess.SELECT , (Order)each);
         }
         System.out.println("---------------------------- Print OrderItem Data -------------------");
         for (Object each : orderItemRepository.selectAll()) {
             System.out.println(each);
+            memoryLogService.putItemData(DatabaseAccess.SELECT , (OrderItem) each);
         }
     }
 
