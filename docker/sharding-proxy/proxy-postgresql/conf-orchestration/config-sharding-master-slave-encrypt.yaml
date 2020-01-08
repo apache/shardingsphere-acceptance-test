@@ -35,7 +35,7 @@ schemaName: sharding_master_slave_encrypt_db
 dataSources:
  ds_master_0:
    url: jdbc:postgresql://proxy-postgresql:5432/demo_ds_master_0?serverTimezone=UTC&useSSL=false
-   username: root
+   username: postgres
    password:
    connectionTimeoutMilliseconds: 30000
    idleTimeoutMilliseconds: 60000
@@ -43,7 +43,7 @@ dataSources:
    maxPoolSize: 65
  ds_master_0_slave_0:
    url: jdbc:postgresql://proxy-postgresql:5432/demo_ds_master_0_slave_0?serverTimezone=UTC&useSSL=false
-   username: root
+   username: postgres
    password:
    connectionTimeoutMilliseconds: 30000
    idleTimeoutMilliseconds: 60000
@@ -51,7 +51,7 @@ dataSources:
    maxPoolSize: 65
  ds_master_0_slave_1:
    url: jdbc:postgresql://proxy-postgresql:5432/demo_ds_master_0_slave_1?serverTimezone=UTC&useSSL=false
-   username: root
+   username: postgres
    password:
    connectionTimeoutMilliseconds: 30000
    idleTimeoutMilliseconds: 60000
@@ -59,7 +59,7 @@ dataSources:
    maxPoolSize: 65
  ds_master_1:
    url: jdbc:postgresql://proxy-postgresql:5432/demo_ds_master_1?serverTimezone=UTC&useSSL=false
-   username: root
+   username: postgres
    password:
    connectionTimeoutMilliseconds: 30000
    idleTimeoutMilliseconds: 60000
@@ -67,7 +67,7 @@ dataSources:
    maxPoolSize: 65
  ds_master_1_slave_0:
    url: jdbc:postgresql://proxy-postgresql:5432/demo_ds_master_1_slave_0?serverTimezone=UTC&useSSL=false
-   username: root
+   username: postgres
    password:
    connectionTimeoutMilliseconds: 30000
    idleTimeoutMilliseconds: 60000
@@ -75,7 +75,7 @@ dataSources:
    maxPoolSize: 65
  ds_master_1_slave_1:
    url: jdbc:postgresql://proxy-postgresql:5432/demo_ds_master_1_slave_1?serverTimezone=UTC&useSSL=false
-   username: root
+   username: postgres
    password:
    connectionTimeoutMilliseconds: 30000
    idleTimeoutMilliseconds: 60000

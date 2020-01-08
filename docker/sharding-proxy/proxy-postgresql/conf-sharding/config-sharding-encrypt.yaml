@@ -3,7 +3,7 @@ schemaName: sharding_encrypt
 dataSources:
   ds_0:
     url: jdbc:postgresql://proxy-postgresql:5432/demo_ds_0?serverTimezone=UTC&useSSL=false
-    username: root
+    username: postgres
     password:
     connectionTimeoutMilliseconds: 30000
     idleTimeoutMilliseconds: 60000
@@ -11,7 +11,7 @@ dataSources:
     maxPoolSize: 50
   ds_1:
     url: jdbc:postgresql://proxy-postgresql:5432/demo_ds_1?serverTimezone=UTC&useSSL=false
-    username: root
+    username: postgres
     password:
     connectionTimeoutMilliseconds: 30000
     idleTimeoutMilliseconds: 60000
