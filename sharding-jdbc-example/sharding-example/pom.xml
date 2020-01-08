@@ -9,7 +9,7 @@
         <version>4.0.0-RC4-SNAPSHOT</version>
     </parent>
     <artifactId>sharding-example</artifactId>
-    <name>Example::sharding::root</name>
+    <name>AcceptanceTest::sharding::root</name>
     
     <packaging>pom</packaging>
     

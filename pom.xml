@@ -13,7 +13,7 @@
         <module>sharding-proxy-example</module>
     </modules>
     
-    <name>Example::root</name>
+    <name>AcceptanceTest::root</name>
     
     <packaging>pom</packaging>
     

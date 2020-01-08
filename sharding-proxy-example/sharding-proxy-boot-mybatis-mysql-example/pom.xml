@@ -9,7 +9,7 @@
         <version>4.0.0-RC4-SNAPSHOT</version>
     </parent>
     <artifactId>sharding-proxy-boot-mybatis-mysql-example</artifactId>
-    <name>Example::proxy::mysql::spring-boot-mybatis</name>
+    <name>AcceptanceTest::proxy::mysql::spring-boot-mybatis</name>
 
     <dependencies>
         <dependency>

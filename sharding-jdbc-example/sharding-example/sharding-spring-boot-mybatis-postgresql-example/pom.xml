@@ -9,7 +9,7 @@
         <version>4.0.0-RC4-SNAPSHOT</version>
     </parent>
     <artifactId>sharding-spring-boot-mybatis-postgresql-example</artifactId>
-    <name>Example::sharding::postgresql::spring-boot-mybatis</name>
+    <name>AcceptanceTest::sharding::postgresql::spring-boot-mybatis</name>
     
     <dependencies>
         <dependency>

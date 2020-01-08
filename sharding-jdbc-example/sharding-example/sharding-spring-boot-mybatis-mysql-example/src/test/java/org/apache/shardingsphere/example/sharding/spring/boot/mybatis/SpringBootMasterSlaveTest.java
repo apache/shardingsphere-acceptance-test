@@ -16,9 +16,10 @@
  */
 
 package org.apache.shardingsphere.example.sharding.spring.boot.mybatis;
-import org.apache.shardingsphere.example.core.api.senario.AnnotationCommonServiceScenario;
+
+import org.apache.shardingsphere.example.core.api.ExampleExecuteTemplate;
+import org.apache.shardingsphere.example.core.api.service.ExampleService;
 import org.apache.shardingsphere.example.core.mybatis.common.SpringResultAssertUtils;
-import org.apache.shardingsphere.example.core.mybatis.service.SpringPojoService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,12 +35,12 @@ import java.sql.SQLException;
 public class SpringBootMasterSlaveTest {
     
     @Autowired
-    private SpringPojoService commonService;
+    ExampleService exampleService;
     
     @Test
     public void assertCommonService() throws SQLException {
-        AnnotationCommonServiceScenario scenario = new AnnotationCommonServiceScenario(commonService);
-        scenario.process();
-        SpringResultAssertUtils.assertMasterSlaveResult(commonService);
+        ExampleExecuteTemplate.run(exampleService);
+        SpringResultAssertUtils.assertExampleServiceMasterSlaveResult(exampleService);
     }
 }
+

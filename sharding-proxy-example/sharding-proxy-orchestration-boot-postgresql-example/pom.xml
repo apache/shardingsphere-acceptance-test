@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>sharding-proxy-orchestration-boot-postgresql-example</artifactId>
-    <name>Example::proxy::orchestration::postgresql::spring-boot-mybatis</name>
+    <name>AcceptanceTest::proxy::orchestration::postgresql::spring-boot-mybatis</name>
 
     <dependencies>
         <dependency>

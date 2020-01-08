@@ -9,7 +9,7 @@
         <version>4.0.0-RC4-SNAPSHOT</version>
     </parent>
     <artifactId>sharding-proxy-boot-mybatis-postgresql-example</artifactId>
-    <name>Example::proxy::postgresql::spring-boot-mybatis</name>
+    <name>AcceptanceTest::proxy::postgresql::spring-boot-mybatis</name>
     
     <dependencies>
         <dependency>

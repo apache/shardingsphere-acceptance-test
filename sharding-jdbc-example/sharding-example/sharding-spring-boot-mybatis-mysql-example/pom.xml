@@ -9,7 +9,7 @@
         <version>4.0.0-RC4-SNAPSHOT</version>
     </parent>
     <artifactId>sharding-spring-boot-mybatis-mysql-example</artifactId>
-    <name>Example::sharding::mysql::spring-boot-mybatis</name>
+    <name>AcceptanceTest::sharding::mysql::spring-boot-mybatis</name>
     
     <dependencies>
         <dependency>
