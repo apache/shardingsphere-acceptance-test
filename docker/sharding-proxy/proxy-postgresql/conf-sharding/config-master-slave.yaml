@@ -70,24 +70,24 @@ schemaName: master_slave_db
 
 dataSources:
  master_ds:
-   url: jdbc:mysql://proxy-postgresql:5432/demo_ds_master?useUnicode=true&characterEncoding=utf-8
-   username: root
+   url: jdbc:postgresql://proxy-postgresql:5432/shardingsphere?searchpath=demo_ds_master
+   username: postgres
    password: 
    connectionTimeoutMilliseconds: 30000
    idleTimeoutMilliseconds: 60000
    maxLifetimeMilliseconds: 1800000
    maxPoolSize: 50
  slave_ds_0:
-   url: jdbc:mysql://proxy-postgresql:5432/demo_ds_slave_0?useUnicode=true&characterEncoding=utf-8
-   username: root
+   url: jdbc:postgresql://proxy-postgresql:5432/shardingsphere?searchpath=demo_ds_slave_0
+   username: postgres
    password: 
    connectionTimeoutMilliseconds: 30000
    idleTimeoutMilliseconds: 60000
    maxLifetimeMilliseconds: 1800000
    maxPoolSize: 50
  slave_ds_1:
-   url: jdbc:mysql://proxy-postgresql:5432/demo_ds_slave_1?useUnicode=true&characterEncoding=utf-8
-   username: root
+   url: jdbc:postgresql://proxy-postgresql:5432/shardingsphere?searchpath=demo_ds_slave_1
+   username: postgres
    password: 
    connectionTimeoutMilliseconds: 30000
    idleTimeoutMilliseconds: 60000

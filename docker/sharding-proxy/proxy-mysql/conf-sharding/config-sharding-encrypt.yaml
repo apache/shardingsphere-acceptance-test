@@ -43,10 +43,18 @@ shardingRule:
         type: aes
         props:
           aes.key.value: 123456abc
+      encryptor_md5:
+        type: md5
+        
     tables:
       t_user:
         columns:
           user_name:
-            plainColumn: user_name_plain
-            cipherColumn: assisted_query_pwd
-            encryptor: encryptor_aes
+            plainColumn: user_name
+            cipherColumn: user_name_cipher
+            encryptor: encryptor_md5
+          
+          pwd:
+            plainColumn: pwd_plain
+            cipherColumn: pwd_cipher
+            encryptor: encryptor_md5

@@ -29,7 +29,7 @@
 #schemaName: encrypt_db
 #
 #dataSource:
-#  url: jdbc:postgresql://localhost:5432/demo_ds?serverTimezone=UTC&useSSL=false
+#  url: jdbc:postgresql://sharding-proxy-mysql:5432/demo_ds?serverTimezone=UTC&useSSL=false
 #  username: postgres
 #  password: postgres
 #  connectionTimeoutMilliseconds: 30000
@@ -86,6 +86,10 @@ encryptRule:
       columns:
         user_name:
           plainColumn: user_name
-          cipherColumn: user_name_plain
-          encryptor: encryptor_aes
-       
+          cipherColumn: user_name_cipher
+          encryptor: encryptor_md5
+          
+        pwd:
+          plainColumn: pwd_plain
+          cipherColumn: pwd_cipher
+          encryptor: encryptor_md5

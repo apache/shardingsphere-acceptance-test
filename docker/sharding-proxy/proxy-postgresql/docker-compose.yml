@@ -13,7 +13,7 @@ services:
     #      Resolving privileged
     #      privileged: true
     volumes:
-      - ../../../src/resources/manual_schema_postgres.sql:/docker-entrypoint-initdb.d/manual_schema_postgre.sql
+      - ../../../src/resources/manual_schema_postgre.sql:/docker-entrypoint-initdb.d/manual_schema_postgre.sql
 
   zookeeper:
     ## get more versions of zookeeper here : https://hub.docker.com/_/zookeeper?tab=tags
