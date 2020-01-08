@@ -31,6 +31,7 @@ services:
     container_name: sharding-jdbc-zookeeper
 
   jdbc-postgres:
+    ## get more versions of zookeeper here : https://hub.docker.com/_/postgres?tab=tags
     image: postgres:11
     ports:
       - "5433:5432"
