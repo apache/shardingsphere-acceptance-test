@@ -36,7 +36,7 @@ sudo sed -i "s/localhost:3307/${ip}:${PORT_PROXY_PG_ORCH}/g" `grep localhost:330
 sudo sed -i "s/localhost:2181/${ip}:${PORT_PROXY_PG_ZK}/g" `grep localhost:2181 -rl sharding-proxy-example/sharding-proxy-orchestration-boot-postgresql-example/`
 
 sudo chmod u+x docker/tools/wait-for-it.sh
-sudo bash docker/tools/wait-for-it.sh ${ip}:${PORT_PROXY__MYSQL_SHARDING} -- echo "sharding-proxy-mysql"
+sudo bash docker/tools/wait-for-it.sh ${ip}:${PORT_PROXY_MYSQL_SHARDING} -- echo "sharding-proxy-mysql"
 sudo bash docker/tools/wait-for-it.sh ${ip}:${PORT_PROXY_MYSQL_ORCH} -- echo "orchestration-proxy-mysql"
 sudo bash docker/tools/wait-for-it.sh ${ip}:${PORT_PROXY_PG_SHARDING} -- echo "sharding-proxy-postgresql"
 sudo bash docker/tools/wait-for-it.sh ${ip}:${PORT_PROXY_PG_ORCH} -- echo "orchestration-proxy-postgresql"
