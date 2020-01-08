@@ -65,7 +65,7 @@
 schemaName: encrypt_db
 
 dataSource:
-  url: jdbc:postgresql://proxy-postgresql:5432/demo_ds?serverTimezone=UTC&useSSL=false
+  url: jdbc:postgresql://proxy-postgresql:5432/shardingsphere?searchpath=demo_ds
   username: postgres
   password:
   connectionTimeoutMilliseconds: 30000
