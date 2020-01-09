@@ -16,5 +16,6 @@
     <modules>
         <module>sharding-spring-boot-mybatis-mysql-example</module>
         <module>sharding-spring-boot-mybatis-postgresql-example</module>
+        <module>sharding-raw-jdbc-mysql-example</module>
     </modules>
 </project>

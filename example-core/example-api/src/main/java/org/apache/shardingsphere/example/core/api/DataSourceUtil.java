@@ -18,67 +18,52 @@
 package org.apache.shardingsphere.example.core.api;
 
 import com.zaxxer.hikari.HikariDataSource;
-import org.apache.shardingsphere.shardingjdbc.api.yaml.YamlEncryptDataSourceFactory;
-import org.apache.shardingsphere.shardingjdbc.api.yaml.YamlMasterSlaveDataSourceFactory;
-import org.apache.shardingsphere.shardingjdbc.api.yaml.YamlShardingDataSourceFactory;
 
 import javax.sql.DataSource;
-import java.io.File;
-import java.io.IOException;
-import java.sql.SQLException;
 
 public final class DataSourceUtil {
     
     private static final String HOST = "localhost";
     
-    private static final int PORT = 3306;
+    private static final int MYSQL_PORT = 3306;
     
-    private static  final String LOCALHOST_PORT = "localhost:3307";
+    private static final String MYSQL_USER_NAME = "root";
     
-    private static final String USER_NAME = "root";
-    
-    private static final String PASSWORD = "";
-    
-    public static DataSource createDataSource(final String dataSourceName) {
-        HikariDataSource result = new HikariDataSource();
-        result.setDriverClassName(com.mysql.jdbc.Driver.class.getName());
-        result.setJdbcUrl(String.format("jdbc:mysql://%s:%s/%s?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8", HOST, PORT, dataSourceName));
-        result.setUsername(USER_NAME);
-        result.setPassword(PASSWORD);
-        return result;
+    private static final String MYSQL_PASSWORD = "";
+
+    private static final int PG_PORT = 5432;
+
+    private static final String PG_USER_NAME = "postgres";
+
+    private static final String PG_PASSWORD = "";
+
+    public static DataSource createDataSource(final String dataSourceName,DatabaseType dbType){
+        switch (dbType){
+            case MYSQL:
+                return createMySQLDataSource(dataSourceName);
+            case POSTGRESQL:
+                return createPostgreSQLDataSource(dataSourceName);
+            default:
+                throw new UnsupportedOperationException(dbType.name());
+        }
     }
     
-    public static DataSource createDataSourceWithShardingProxy(final String dataSourceName) {
+    private static DataSource createMySQLDataSource(final String dataSourceName) {
         HikariDataSource result = new HikariDataSource();
         result.setDriverClassName(com.mysql.jdbc.Driver.class.getName());
-        result.setJdbcUrl(String.format("jdbc:mysql://%s/%s?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8", LOCALHOST_PORT, dataSourceName));
-        result.setUsername(USER_NAME);
-        result.setPassword(PASSWORD);
+        result.setJdbcUrl(String.format("jdbc:mysql://%s:%s/%s?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8", HOST, MYSQL_PORT, dataSourceName));
+        result.setUsername(MYSQL_USER_NAME);
+        result.setPassword(MYSQL_PASSWORD);
         return result;
     }
 
-    public static DataSource createDataSourceWithYamlConfig(final String yamlFilePath, Class c, SceneType sceneType) throws IOException, SQLException {
-        switch (sceneType){
-            case ENCRYPT_ONLY:
-                return YamlEncryptDataSourceFactory.createDataSource(new File(c.getResource(yamlFilePath).getFile()));
-            case MASTER_SLAVE_ONLY:
-                return YamlMasterSlaveDataSourceFactory.createDataSource(new File(c.getResource(yamlFilePath).getFile()));
-            case SHARDING_ONLY:
-            case SHARDING_ENCRYPT:
-            case SHARDING_MASTER_SLAVE:
-            case SHARDING_MASTER_SLAVE_ENCRYPT:
-                return YamlShardingDataSourceFactory.createDataSource(new File(c.getResource(yamlFilePath).getFile()));
-//            case ORCHESTRATION_ENCRYPT_ONLY:
-//                return YamlOrchestrationEncryptDataSourceFactory.createDataSource(new File(c.getResource(yamlFilePath).getFile()));
-//            case ORCHESTRATION_MASTER_SLAVE_ONLY:
-//                return YamlOrchestrationMasterSlaveDataSourceFactory.createDataSource(new File(c.getResource(yamlFilePath).getFile()));
-//            case ORCHESTRATION_SHARDING_ONLY:
-//            case ORCHESTRATION_SHARDING_ENCRYPT:
-//            case ORCHESTRATION_SHARDING_MASTER_SLAVE:
-//            case ORCHESTRATION_SHARDING_MASTER_SLAVE_ENCRYPT:
-//                return YamlOrchestrationShardingDataSourceFactory.createDataSource(new File(c.getResource(yamlFilePath).getFile()));
-        }
-        return null;
+    private static DataSource createPostgreSQLDataSource(final String dataSourceName) {
+        HikariDataSource result = new HikariDataSource();
+        result.setDriverClassName(com.mysql.jdbc.Driver.class.getName());
+        result.setJdbcUrl(String.format("jdbc:postgresql://%s:%s/shardingsphere?currentSchema=%s", HOST, PG_PORT, dataSourceName));
+        result.setUsername(PG_USER_NAME);
+        result.setPassword(PG_PASSWORD);
+        return result;
     }
-    
+
 }
