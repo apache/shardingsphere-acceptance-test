@@ -11,7 +11,7 @@ import static org.junit.Assert.assertThat;
 /**
  * linzesi
  */
-public class SpringBootRawJdbcAssertUtils implements AssertUtils {
+public class RawJdbcAssertUtils implements AssertUtils {
 
     public static void assertShardingTableDatabases(ExampleService exampleService){
         MemoryLogService memoryLogService = exampleService.getMemoryLogService();
@@ -36,7 +36,13 @@ public class SpringBootRawJdbcAssertUtils implements AssertUtils {
         assertThat(memoryLogService.getUserData(DatabaseAccess.INSERT).size(), is(10));
         assertThat(memoryLogService.getUserData(DatabaseAccess.SELECT).size(), is(10));
     }
-    
+
+    public static void assertShardingEncrypt(ExampleService exampleService){
+        MemoryLogService memoryLogService = exampleService.getMemoryLogService();
+        assertThat(memoryLogService.getUserData(DatabaseAccess.INSERT).size(), is(10));
+        assertThat(memoryLogService.getUserData(DatabaseAccess.SELECT).size(), is(10));
+    }
+
     public static void assertShardingMasterSlaveEncrypt(ExampleService exampleService) {
         MemoryLogService memoryLogService = exampleService.getMemoryLogService();
         assertThat(memoryLogService.getUserData(DatabaseAccess.INSERT).size(), is(10));
