@@ -5,10 +5,10 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.apache.shardingsphere.example</groupId>
-  <artifactId>orchestration-raw-jdbc-mysql-example</artifactId>
+  <artifactId>orchestration-raw-jdbc-postgresql-example</artifactId>
   <version>4.0.0-RC4-SNAPSHOT</version>
 
-  <name>AcceptanceTest::orchestration::mysql::raw-jdbc</name>
+  <name>AcceptanceTest::orchestration::postgresql::raw-jdbc</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
