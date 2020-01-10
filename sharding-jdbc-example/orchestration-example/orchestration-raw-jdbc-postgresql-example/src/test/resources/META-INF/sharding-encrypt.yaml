@@ -1,0 +1,59 @@
+dataSources:
+  ds_0: !!com.zaxxer.hikari.HikariDataSource
+    driverClassName: org.postgresql.Driver
+    jdbcUrl: jdbc:postgresql://localhost:5432/shardingsphere?currentSchema=demo_ds_0
+    username: postgres
+    password:
+  ds_1: !!com.zaxxer.hikari.HikariDataSource
+    driverClassName: org.postgresql.Driver
+    jdbcUrl: jdbc:postgresql://localhost:5432/shardingsphere?currentSchema=demo_ds_1
+    username: postgres
+    password:
+
+shardingRule:
+  tables:
+    t_user:
+      actualDataNodes: ds_${0..1}.t_user_${0..1}
+      tableStrategy:
+        inline:
+          shardingColumn: user_id
+          algorithmExpression: t_user_${user_id % 2}
+      databaseStrategy:
+        inline:
+          shardingColumn: user_id
+          algorithmExpression: ds_${user_id % 2}
+      keyGenerator:
+        type: SNOWFLAKE
+        column: user_id
+  defaultDatabaseStrategy:
+    none:
+  defaultTableStrategy:
+    none:
+  encryptRule:
+    encryptors:
+      encryptor_aes:
+        type: aes
+        props:
+          aes.key.value: 123456abc
+      encryptor_md5:
+        type: md5
+    tables:
+      t_user:
+        columns:
+          user_name:
+            plainColumn: user_name
+            cipherColumn: user_name_cipher
+            encryptor: encryptor_md5
+
+          pwd:
+            plainColumn: pwd_plain
+            cipherColumn: pwd_cipher
+            encryptor: encryptor_md5
+
+orchestration:
+  name: orchestration-postgresql-yaml-sharding-encrypt
+  overwrite: true
+  registry:
+    type: zookeeper
+    serverLists: localhost:2181
+    namespace: orchestration-raw-jdbc-postgresql
