@@ -10,7 +10,7 @@
     <modules>
         <module>example-core</module>
         <module>sharding-jdbc-example</module>
-<!--        <module>sharding-proxy-example</module>-->
+        <module>sharding-proxy-example</module>
     </modules>
     
     <name>AcceptanceTest::root</name>
