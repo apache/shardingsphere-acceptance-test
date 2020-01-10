@@ -21,6 +21,9 @@ import org.apache.shardingsphere.example.type.ShardingType;
 import org.apache.shardingsphere.shardingjdbc.api.yaml.YamlEncryptDataSourceFactory;
 import org.apache.shardingsphere.shardingjdbc.api.yaml.YamlMasterSlaveDataSourceFactory;
 import org.apache.shardingsphere.shardingjdbc.api.yaml.YamlShardingDataSourceFactory;
+import org.apache.shardingsphere.shardingjdbc.orchestration.api.yaml.YamlOrchestrationEncryptDataSourceFactory;
+import org.apache.shardingsphere.shardingjdbc.orchestration.api.yaml.YamlOrchestrationMasterSlaveDataSourceFactory;
+import org.apache.shardingsphere.shardingjdbc.orchestration.api.yaml.YamlOrchestrationShardingDataSourceFactory;
 
 import javax.sql.DataSource;
 import java.io.File;
@@ -32,21 +35,21 @@ public class YamlDataSourceFactory {
     public static DataSource newInstance(final ShardingType shardingType) throws SQLException, IOException {
         switch (shardingType) {
             case SHARDING_DATABASES:
-                return YamlShardingDataSourceFactory.createDataSource(getFile("/META-INF/sharding-databases.yaml"));
+                return YamlOrchestrationShardingDataSourceFactory.createDataSource(getFile("/META-INF/sharding-databases.yaml"));
             case SHARDING_TABLES:
-                return YamlShardingDataSourceFactory.createDataSource(getFile("/META-INF/sharding-tables.yaml"));
+                return YamlOrchestrationShardingDataSourceFactory.createDataSource(getFile("/META-INF/sharding-tables.yaml"));
             case SHARDING_DATABASES_AND_TABLES:
-                return YamlShardingDataSourceFactory.createDataSource(getFile("/META-INF/sharding-databases-tables.yaml"));
+                return YamlOrchestrationShardingDataSourceFactory.createDataSource(getFile("/META-INF/sharding-databases-tables.yaml"));
             case ENCRYPT:
-                return YamlEncryptDataSourceFactory.createDataSource(getFile("/META-INF/encrypt-only.yaml"));
+                return YamlOrchestrationEncryptDataSourceFactory.createDataSource(getFile("/META-INF/encrypt-only.yaml"));
             case SHARDING_ENCRYPT:
-                return YamlShardingDataSourceFactory.createDataSource(getFile("/META-INF/sharding-encrypt.yaml"));
+                return YamlOrchestrationShardingDataSourceFactory.createDataSource(getFile("/META-INF/sharding-encrypt.yaml"));
             case MASTER_SLAVE:
-                return YamlMasterSlaveDataSourceFactory.createDataSource(getFile("/META-INF/master-slave.yaml"));
+                return YamlOrchestrationMasterSlaveDataSourceFactory.createDataSource(getFile("/META-INF/master-slave.yaml"));
             case SHARDING_MASTER_SLAVE:
-                return YamlShardingDataSourceFactory.createDataSource(getFile("/META-INF/sharding-master-slave.yaml"));
+                return YamlOrchestrationShardingDataSourceFactory.createDataSource(getFile("/META-INF/sharding-master-slave.yaml"));
             case SHARDING_MASTER_SLAVE_ENCRYPT:
-                return YamlShardingDataSourceFactory.createDataSource(getFile("/META-INF/sharding-master-slave-encrypt.yaml"));
+                return YamlOrchestrationShardingDataSourceFactory.createDataSource(getFile("/META-INF/sharding-master-slave-encrypt.yaml"));
             default:
                 throw new UnsupportedOperationException(shardingType.name());
         }

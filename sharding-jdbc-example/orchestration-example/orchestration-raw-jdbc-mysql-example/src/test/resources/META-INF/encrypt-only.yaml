@@ -41,3 +41,11 @@ encryptRule:
           plainColumn: pwd_plain
           cipherColumn: pwd_cipher
           encryptor: encryptor_md5
+
+orchestration:
+  name: orchestration-mysql-yaml-encrypt
+  overwrite: true
+  registry:
+    type: zookeeper
+    serverLists: localhost:2181
+    namespace: orchestration-raw-jdbc-mysql

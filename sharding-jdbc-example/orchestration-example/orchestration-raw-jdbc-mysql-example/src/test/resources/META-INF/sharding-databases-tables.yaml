@@ -65,3 +65,11 @@ shardingRule:
 
 props:
   sql.show: false
+
+orchestration:
+  name: orchestration-mysql-yaml-sharding
+  overwrite: true
+  registry:
+    type: zookeeper
+    serverLists: localhost:2181
+    namespace: orchestration-raw-jdbc-mysql

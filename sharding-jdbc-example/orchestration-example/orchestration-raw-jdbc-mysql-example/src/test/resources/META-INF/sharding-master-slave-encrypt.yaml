@@ -101,3 +101,11 @@ shardingRule:
 
 props:
   sql.show: false
+
+orchestration:
+  name: orchestration-mysql-yaml-sharding-MS-encrypt
+  overwrite: true
+  registry:
+    type: zookeeper
+    serverLists: localhost:2181
+    namespace: orchestration-raw-jdbc-mysql
