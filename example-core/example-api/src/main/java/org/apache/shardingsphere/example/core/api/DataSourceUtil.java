@@ -59,7 +59,7 @@ public final class DataSourceUtil {
 
     private static DataSource createPostgreSQLDataSource(final String dataSourceName) {
         HikariDataSource result = new HikariDataSource();
-        result.setDriverClassName(com.mysql.jdbc.Driver.class.getName());
+        result.setDriverClassName(org.postgresql.Driver.class.getName());
         result.setJdbcUrl(String.format("jdbc:postgresql://%s:%s/shardingsphere?currentSchema=%s", HOST, PG_PORT, dataSourceName));
         result.setUsername(PG_USER_NAME);
         result.setPassword(PG_PASSWORD);
