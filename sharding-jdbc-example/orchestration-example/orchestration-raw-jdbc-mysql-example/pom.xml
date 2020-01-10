@@ -5,10 +5,10 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.apache.shardingsphere.example</groupId>
-  <artifactId>sharding-raw-jdbc-mysql-example</artifactId>
+  <artifactId>orchestration-raw-jdbc-mysql-example</artifactId>
   <version>4.0.0-RC4-SNAPSHOT</version>
 
-  <name>AcceptanceTest::sharding::mysql::raw-jdbc</name>
+  <name>AcceptanceTest::orchestration::::mysql::raw-jdbc</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
@@ -42,6 +42,24 @@
       <artifactId>example-raw-jdbc</artifactId>
       <version>4.0.0-RC4-SNAPSHOT</version>
       <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.shardingsphere</groupId>
+      <artifactId>sharding-orchestration-reg-api</artifactId>
+      <version>4.0.0-RC4-SNAPSHOT</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.shardingsphere</groupId>
+      <artifactId>sharding-jdbc-orchestration</artifactId>
+      <version>4.0.0-RC4-SNAPSHOT</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.shardingsphere</groupId>
+      <artifactId>sharding-orchestration-reg-zookeeper-curator</artifactId>
+      <version>4.0.0-RC4-SNAPSHOT</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 

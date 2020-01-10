@@ -8,7 +8,7 @@
   <artifactId>sharding-raw-jdbc-postgresql-example</artifactId>
   <version>4.0.0-RC4-SNAPSHOT</version>
 
-  <name>sharding-raw-jdbc-postgresql-example</name>
+  <name>AcceptanceTest::sharding::postgresql::raw-jdbc</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
