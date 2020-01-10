@@ -9,11 +9,12 @@
         <version>4.0.0-RC4-SNAPSHOT</version>
     </parent>
     <artifactId>orchestration-example</artifactId>
-    <name>Example::orchestration</name>
+    <name>AcceptanceTest::orchestration::root</name>
     <packaging>pom</packaging>
     
     <modules>
         <module>orchestration-spring-boot-mysql-example</module>
         <module>orchestration-spring-boot-postgresql-example</module>
+        <module>orchestration-raw-jdbc-mysql-example</module>
     </modules>
 </project>
