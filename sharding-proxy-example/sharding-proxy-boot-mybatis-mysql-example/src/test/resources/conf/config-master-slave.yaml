@@ -29,25 +29,25 @@
 #
 #dataSources:
 #  master_ds:
-#    url: jdbc:postgresql://127.0.0.1:5432/demo_ds_master?serverTimezone=UTC&useSSL=false
+#    url: jdbc:postgresql://localhost:5432/demo_master_ds?serverTimezone=UTC&useSSL=false
 #    username: postgres
-#    password: postgres
+#    password: 199601postgres
 #    connectionTimeoutMilliseconds: 30000
 #    idleTimeoutMilliseconds: 60000
 #    maxLifetimeMilliseconds: 1800000
 #    maxPoolSize: 50
 #  slave_ds_0:
-#    url: jdbc:postgresql://127.0.0.1:5432/demo_ds_slave_0?serverTimezone=UTC&useSSL=false
+#    url: jdbc:postgresql://localhost:5432/demo_ds_slave_0?serverTimezone=UTC&useSSL=false
 #    username: postgres
-#    password: postgres
+#    password: 199601postgres
 #    connectionTimeoutMilliseconds: 30000
 #    idleTimeoutMilliseconds: 60000
 #    maxLifetimeMilliseconds: 1800000
 #    maxPoolSize: 50
 #  slave_ds_1:
-#    url: jdbc:postgresql://127.0.0.1:5432/demo_ds_slave_1?serverTimezone=UTC&useSSL=false
+#    url: jdbc:postgresql://localhost:5432/demo_ds_slave_1?serverTimezone=UTC&useSSL=false
 #    username: postgres
-#    password: postgres
+#    password: 199601postgres
 #    connectionTimeoutMilliseconds: 30000
 #    idleTimeoutMilliseconds: 60000
 #    maxLifetimeMilliseconds: 1800000
@@ -62,40 +62,40 @@
 
 ######################################################################################################
 #
-# If you want to connect to MySQL, you should manually copy MySQL driver to lib directory.
+# If you want to connect to postgresql, you should manually copy postgresql driver to lib directory.
 #
 ######################################################################################################
 
 schemaName: master_slave_db
 
 dataSources:
-  master_ds:
-    url: jdbc:mysql://127.0.0.1:3306/demo_ds_master?serverTimezone=UTC&useSSL=false
-    username: root
-    password:
-    connectionTimeoutMilliseconds: 30000
-    idleTimeoutMilliseconds: 60000
-    maxLifetimeMilliseconds: 1800000
-    maxPoolSize: 50
-  slave_ds_0:
-    url: jdbc:mysql://127.0.0.1:3306/demo_ds_slave_0?serverTimezone=UTC&useSSL=false
-    username: root
-    password:
-    connectionTimeoutMilliseconds: 30000
-    idleTimeoutMilliseconds: 60000
-    maxLifetimeMilliseconds: 1800000
-    maxPoolSize: 50
-  slave_ds_1:
-    url: jdbc:mysql://127.0.0.1:3306/demo_ds_slave_1?serverTimezone=UTC&useSSL=false
-    username: root
-    password:
-    connectionTimeoutMilliseconds: 30000
-    idleTimeoutMilliseconds: 60000
-    maxLifetimeMilliseconds: 1800000
-    maxPoolSize: 50
+ master_ds:
+   url: jdbc:mysql://localhost:3306/demo_ds_master?useUnicode=true&characterEncoding=utf-8
+   username: root
+   password: 
+   connectionTimeoutMilliseconds: 30000
+   idleTimeoutMilliseconds: 60000
+   maxLifetimeMilliseconds: 1800000
+   maxPoolSize: 50
+ slave_ds_0:
+   url: jdbc:mysql://localhost:3306/demo_ds_slave_0?useUnicode=true&characterEncoding=utf-8
+   username: root
+   password: 
+   connectionTimeoutMilliseconds: 30000
+   idleTimeoutMilliseconds: 60000
+   maxLifetimeMilliseconds: 1800000
+   maxPoolSize: 50
+ slave_ds_1:
+   url: jdbc:mysql://localhost:3306/demo_ds_slave_1?useUnicode=true&characterEncoding=utf-8
+   username: root
+   password: 
+   connectionTimeoutMilliseconds: 30000
+   idleTimeoutMilliseconds: 60000
+   maxLifetimeMilliseconds: 1800000
+   maxPoolSize: 50
 
 masterSlaveRule:
-  name: ms_ds
+  name: ds_ms
   masterDataSourceName: master_ds
   slaveDataSourceNames:
     - slave_ds_0
