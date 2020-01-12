@@ -19,5 +19,6 @@
         <module>sharding-raw-jdbc-mysql-example</module>
         <module>sharding-raw-jdbc-postgresql-example</module>
         <module>sharding-spring-namespace-mybatis-mysql-example</module>
+        <module>sharding-spring-namespace-mybatis-postgresql-example</module>
     </modules>
 </project>
