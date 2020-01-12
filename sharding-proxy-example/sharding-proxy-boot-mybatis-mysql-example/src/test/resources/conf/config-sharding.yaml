@@ -101,40 +101,40 @@ dataSources:
     maxPoolSize: 50
 
 shardingRule:
-  tables:
-    t_address:
-      actualDataNodes: ds_${0..1}.t_address
-    t_order:
-      actualDataNodes: ds_${0..1}.t_order_${0..1}
-      tableStrategy:
+ tables:
+   t_address:
+     actualDataNodes: ds_${0..1}.t_address
+   t_order:
+     actualDataNodes: ds_${0..1}.t_order_${0..1}
+     tableStrategy:
         inline:
-          shardingColumn: order_id
-          algorithmExpression: t_order_${order_id % 2}
-      databaseStrategy:
+         shardingColumn: order_id
+         algorithmExpression: t_order_${order_id % 2}
+     databaseStrategy:
         inline:
-          shardingColumn: user_id
-          algorithmExpression: ds_${user_id % 2}
-      keyGenerator:
-        type: SNOWFLAKE
-        column: order_id
-    t_order_item:
-      actualDataNodes: ds_${0..1}.t_order_item_${0..1}
-      tableStrategy:
+         shardingColumn: user_id
+         algorithmExpression: ds_${user_id % 2}
+     keyGenerator:
+       type: SNOWFLAKE
+       column: order_id
+   t_order_item:
+     actualDataNodes: ds_${0..1}.t_order_item_${0..1}
+     tableStrategy:
+       inline:
+         shardingColumn: order_id
+         algorithmExpression: t_order_item_${order_id % 2}
+     databaseStrategy:
         inline:
-          shardingColumn: order_id
-          algorithmExpression: t_order_item_${order_id % 2}
-      databaseStrategy:
-        inline:
-          shardingColumn: user_id
-          algorithmExpression: ds_${user_id % 2}
-      keyGenerator:
-        type: SNOWFLAKE
-        column: order_id
-  bindingTables:
-    - t_order,t_order_item
-  broadcastTables:
+         shardingColumn: user_id
+         algorithmExpression: ds_${user_id % 2}
+     keyGenerator:
+       type: SNOWFLAKE
+       column: order_id
+ bindingTables:
+   - t_order,t_order_item
+ broadcastTables:
     - t_address
-  defaultDatabaseStrategy:
-    none:
-  defaultTableStrategy:
-    none:
+ defaultDatabaseStrategy:
+   none:
+ defaultTableStrategy:
+   none:

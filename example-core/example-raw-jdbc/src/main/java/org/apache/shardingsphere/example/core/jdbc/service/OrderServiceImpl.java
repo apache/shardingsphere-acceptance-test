@@ -36,9 +36,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class OrderServiceImpl implements ExampleService {
-
+    
     private MemoryLogService memoryLogService = new MemoryLogService();
-
+    
     private OrderRepository orderRepository;
     
     private OrderItemRepository orderItemRepository;
@@ -127,7 +127,7 @@ public final class OrderServiceImpl implements ExampleService {
         order.setAddressId(i);
         order.setStatus("INSERT_TEST");
         orderRepository.insert(order);
-        memoryLogService.putOrderData(DatabaseAccess.INSERT,order);
+        memoryLogService.putOrderData(DatabaseAccess.INSERT, order);
         return order;
     }
     
@@ -137,7 +137,7 @@ public final class OrderServiceImpl implements ExampleService {
         item.setUserId(i);
         item.setStatus("INSERT_TEST");
         orderItemRepository.insert(item);
-        memoryLogService.putItemData(DatabaseAccess.INSERT,item);
+        memoryLogService.putItemData(DatabaseAccess.INSERT, item);
     }
     
     private void deleteData(final List<Long> orderIds) throws SQLException {
@@ -153,13 +153,15 @@ public final class OrderServiceImpl implements ExampleService {
         System.out.println("---------------------------- Print Order Data -----------------------");
         for (Object each : orderRepository.selectAll()) {
             System.out.println(each);
+            memoryLogService.putOrderData(DatabaseAccess.SELECT, (Order) each);
         }
         System.out.println("---------------------------- Print OrderItem Data -------------------");
         for (Object each : orderItemRepository.selectAll()) {
             System.out.println(each);
+            memoryLogService.putItemData(DatabaseAccess.SELECT, (OrderItem) each);
         }
     }
-
+    
     @Override
     public MemoryLogService getMemoryLogService() {
         return memoryLogService;

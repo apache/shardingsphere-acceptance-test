@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:encrypt="http://shardingsphere.apache.org/schema/shardingsphere/encrypt"
+       xmlns:bean="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans.xsd 
+                        http://shardingsphere.apache.org/schema/shardingsphere/encrypt
+                        http://shardingsphere.apache.org/schema/shardingsphere/encrypt/encrypt.xsd 
+                        http://www.springframework.org/schema/util 
+                        http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <bean id="ds" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/demo_ds?useSSL=false&amp;useUnicode=true&amp;characterEncoding=UTF-8"/>
+        <property name="username" value="root"/>
+        <property name="password" value=""/>
+    </bean>
+
+    <bean:properties id="props">
+        <prop key="aes.key.value">123456</prop>
+    </bean:properties>
+
+    <encrypt:data-source id="encryptDataSource" data-source-name="ds" >
+        <encrypt:encrypt-rule>
+            <encrypt:tables>
+                <encrypt:table name="t_order">
+                    <encrypt:column logic-column="user_id" plain-column="user_decrypt" cipher-column="user_encrypt" assisted-query-column="user_assisted" encryptor-ref="encryptor_aes" />
+                    <encrypt:column logic-column="order_id" plain-column="order_decrypt" cipher-column="order_encrypt" assisted-query-column="order_assisted" encryptor-ref="encryptor_md5"/>
+                </encrypt:table>
+            </encrypt:tables>
+            <encrypt:encryptors>
+                <encrypt:encryptor id="encryptor_aes" type="AES" props-ref="props"/>
+                <encrypt:encryptor id="encryptor_md5" type="MD5" />
+            </encrypt:encryptors>
+        </encrypt:encrypt-rule>
+        <encrypt:props>
+            <prop key="sql.show">true</prop>
+            <prop key="query.with.cipher.column">true</prop>
+        </encrypt:props>
+    </encrypt:data-source>
+</beans>
