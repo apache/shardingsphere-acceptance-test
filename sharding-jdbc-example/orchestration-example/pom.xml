@@ -18,5 +18,6 @@
         <module>orchestration-raw-jdbc-mysql-example</module>
         <module>orchestration-raw-jdbc-postgresql-example</module>
         <module>orchestration-spring-namespace-mysql-example</module>
+        <module>orchestration-spring-namespace-postgresql-example</module>
     </modules>
 </project>

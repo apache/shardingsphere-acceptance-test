@@ -5,10 +5,10 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.apache.shardingsphere.example</groupId>
-  <artifactId>sharding-spring-namespace-mybatis-postgresql-example</artifactId>
+  <artifactId>orchestration-spring-namespace-postgresql-example</artifactId>
   <version>4.0.0-RC4-SNAPSHOT</version>
 
-  <name>AcceptanceTest::sharding::postgresql::spring-namespace-mybatis</name>
+  <name>AcceptanceTest::orchestration::postgresql::spring-namespace-mybatis</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
@@ -50,6 +50,22 @@
       <groupId>org.springframework</groupId>
       <artifactId>spring-context</artifactId>
       <version>4.3.25.RELEASE</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.shardingsphere</groupId>
+      <artifactId>sharding-orchestration-reg-api</artifactId>
+      <version>4.0.0-RC4-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.shardingsphere</groupId>
+      <artifactId>sharding-orchestration-reg-zookeeper-curator</artifactId>
+      <version>4.0.0-RC4-SNAPSHOT</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.shardingsphere</groupId>
+      <artifactId>sharding-jdbc-orchestration-spring-namespace</artifactId>
+      <version>4.0.0-RC4-SNAPSHOT</version>
     </dependency>
   </dependencies>
 
