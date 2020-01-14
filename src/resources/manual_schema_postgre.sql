@@ -1,4 +1,4 @@
-alter system set max_connections=2000;
+alter system set max_connections=4000;
 
 DROP SCHEMA IF EXISTS demo_ds CASCADE;
 DROP SCHEMA IF EXISTS demo_ds_0 CASCADE;

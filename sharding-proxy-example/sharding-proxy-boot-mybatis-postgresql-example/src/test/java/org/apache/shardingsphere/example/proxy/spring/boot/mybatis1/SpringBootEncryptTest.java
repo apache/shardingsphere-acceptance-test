@@ -25,7 +25,7 @@ public class SpringBootEncryptTest {
     
     @Test
     public void commonService() throws SQLException {
-            ExampleExecuteTemplate.run(exampleService);
-            SpringResultAssertUtils.assertExampleServiceEncryptResult(exampleService);
+        ExampleExecuteTemplate.run(exampleService);
+        SpringResultAssertUtils.assertExampleServiceEncryptResult(exampleService);
     }
 }

@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.apache.shardingsphere.example</groupId>
-  <artifactId>sharding-spring-namespace-mybatis-mysql</artifactId>
+  <artifactId>sharding-spring-namespace-mybatis-mysql-example</artifactId>
   <version>4.0.0-RC4-SNAPSHOT</version>
 
   <name>AcceptanceTest::sharding::mysql::spring-namespace-mybatis</name>

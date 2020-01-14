@@ -18,7 +18,7 @@ public class RawJDBCJavaShardingMasterSlave {
     @Test
     public void assertCommonService() throws SQLException {
         DataSource dataSource = DataSourceFactory.newInstance(ShardingType.SHARDING_MASTER_SLAVE);
-        ExampleService exampleService = new OrderServiceImpl(new OrderRepositoryImpl(dataSource),new OrderItemRepositoryImpl(dataSource), new AddressRepositoryImpl(dataSource));
+        ExampleService exampleService = new OrderServiceImpl(new OrderRepositoryImpl(dataSource), new OrderItemRepositoryImpl(dataSource), new AddressRepositoryImpl(dataSource));
         ExampleExecuteTemplate.run(exampleService);
         RawJdbcAssertUtils.assertShardingMasterSlaves(exampleService);
     }

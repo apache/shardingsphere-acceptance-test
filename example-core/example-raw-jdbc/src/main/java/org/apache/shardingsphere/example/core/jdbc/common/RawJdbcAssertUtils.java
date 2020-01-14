@@ -54,4 +54,10 @@ public class RawJdbcAssertUtils implements AssertUtils {
         assertThat(memoryLogService.getUserData(DatabaseAccess.INSERT).size(), is(10));
         assertThat(memoryLogService.getUserData(DatabaseAccess.SELECT).size(), is(0));
     }
+    
+    public static void assertPgTempShardingTableDatabases(ExampleService exampleService) {
+        MemoryLogService memoryLogService = exampleService.getMemoryLogService();
+        assertThat(memoryLogService.getOrderData(DatabaseAccess.INSERT).size(), is(10));
+        assertThat(memoryLogService.getOrderItemData(DatabaseAccess.INSERT).size(), is(10));
+    }
 }

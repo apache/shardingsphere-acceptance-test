@@ -167,19 +167,17 @@ public class SpringResultAssertUtils implements AssertUtils {
         assertThat(memoryLogService.getOrderItemData(DatabaseAccess.SELECT).size(), is(10));
     }
     
-    public static void assertTempPgExampleServiceShardingDatabaseResult(final ExampleService exampleService) {
-        MemoryLogService memoryLogService = exampleService.getMemoryLogService();
-        assertThat(memoryLogService.getOrderData(DatabaseAccess.INSERT).size(), is(10));
-        assertThat(memoryLogService.getOrderData(DatabaseAccess.SELECT).size(), is(0));
-        assertThat(memoryLogService.getOrderItemData(DatabaseAccess.INSERT).size(), is(10));
-        assertThat(memoryLogService.getOrderItemData(DatabaseAccess.SELECT).size(), is(0));
-    }
-    
     public static void assertExampleServiceShardingTableResult(final  ExampleService exampleService) {
         MemoryLogService memoryLogService = exampleService.getMemoryLogService();
         assertThat(memoryLogService.getOrderData(DatabaseAccess.INSERT).size(), is(10));
         assertThat(memoryLogService.getOrderData(DatabaseAccess.SELECT).size(), is(10));
         assertThat(memoryLogService.getOrderItemData(DatabaseAccess.INSERT).size(), is(10));
         assertThat(memoryLogService.getOrderItemData(DatabaseAccess.SELECT).size(), is(10));
+    }
+    
+    public static void assertTempPgExampleServiceShardingResult(ExampleService exampleService) {
+        MemoryLogService memoryLogService = exampleService.getMemoryLogService();
+        assertThat(memoryLogService.getOrderData(DatabaseAccess.INSERT).size(), is(10));
+        assertThat(memoryLogService.getOrderItemData(DatabaseAccess.INSERT).size(), is(10));
     }
 }

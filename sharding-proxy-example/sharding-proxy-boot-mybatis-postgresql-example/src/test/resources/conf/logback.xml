@@ -25,9 +25,9 @@
     <logger name="org.apache.shardingsphere" level="info" additivity="false">
         <appender-ref ref="console"/>
     </logger>
-    
+
     <postgres>
-        <level value="info" />
-        <appender-ref ref="console" />
+        <level value="info"/>
+        <appender-ref ref="console"/>
     </postgres>
 </configuration> 
