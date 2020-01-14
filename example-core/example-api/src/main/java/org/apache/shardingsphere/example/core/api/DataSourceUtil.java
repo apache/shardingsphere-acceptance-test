@@ -25,11 +25,11 @@ public final class DataSourceUtil {
     
     private static final String HOST = "localhost";
     
-    private static final int MYSQL_PORT = 3306;
+    private static final int MYSQL_PORT=3306;
     
-    private static final int PROXY_MYSQL_PORT = 3307;
+    private static final int PROXY_MYSQL_PORT=3308;
     
-    private static final int PROXY_POSTGRESQL_PORT = 3307;
+    private static final int PROXY_POSTGRESQL_PORT=3309;
     
     private static final String MYSQL_USER_NAME = "root";
     

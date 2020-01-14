@@ -11,9 +11,9 @@
 
     <artifactId>sharding-proxy-raw-jdbc-example</artifactId>
     <name>AcceptanceTest::proxy::raw-jdbc::root</name>
-    
+
     <packaging>pom</packaging>
-    
+
     <modules>
         <module>sharding-proxy-raw-jdbc-postgresql-example</module>
         <module>sharding-proxy-raw-jdbc-mysql-example</module>

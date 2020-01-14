@@ -6,9 +6,7 @@ import org.apache.shardingsphere.example.core.jdbc.common.RawJdbcAssertUtils;
 import org.apache.shardingsphere.example.core.jdbc.repository.mysql.AddressRepositoryImpl;
 import org.apache.shardingsphere.example.core.jdbc.repository.mysql.OrderItemRepositoryImpl;
 import org.apache.shardingsphere.example.core.jdbc.repository.mysql.OrderRepositoryImpl;
-import org.apache.shardingsphere.example.core.jdbc.repository.mysql.UserRepositoryImpl;
 import org.apache.shardingsphere.example.core.jdbc.service.OrderServiceImpl;
-import org.apache.shardingsphere.example.core.jdbc.service.UserServiceImpl;
 import org.apache.shardingsphere.example.factory.DataSourceFactory;
 import org.apache.shardingsphere.example.type.ShardingType;
 import org.junit.Test;
@@ -21,7 +19,7 @@ public class RawJDBCJavaMasterSlaveTest {
     @Test
     public void assertCommonService() throws SQLException {
         DataSource dataSource = DataSourceFactory.newInstance(ShardingType.MASTER_SLAVE);
-        ExampleService exampleService = new OrderServiceImpl(new OrderRepositoryImpl(dataSource),new OrderItemRepositoryImpl(dataSource), new AddressRepositoryImpl(dataSource));
+        ExampleService exampleService = new OrderServiceImpl(new OrderRepositoryImpl(dataSource), new OrderItemRepositoryImpl(dataSource), new AddressRepositoryImpl(dataSource));
         ExampleExecuteTemplate.run(exampleService);
         RawJdbcAssertUtils.assertMasterSlaves(exampleService);
     }

@@ -15,11 +15,11 @@ import javax.sql.DataSource;
 import java.sql.SQLException;
 
 public class RawJDBCJavaShardingTest {
-     @Test
+    @Test
     public void assertCommonService() throws SQLException {
-         DataSource dataSource = DataSourceFactory.newInstance(ShardingType.SHARDING_DATABASES_AND_TABLES);
-         ExampleService exampleService = new OrderServiceImpl(new OrderRepositoryImpl(dataSource),new OrderItemRepositoryImpl(dataSource), new AddressRepositoryImpl(dataSource));
-         ExampleExecuteTemplate.run(exampleService);
-         RawJdbcAssertUtils.assertShardingTableDatabases(exampleService);
-     }
+        DataSource dataSource = DataSourceFactory.newInstance(ShardingType.SHARDING_DATABASES_AND_TABLES);
+        ExampleService exampleService = new OrderServiceImpl(new OrderRepositoryImpl(dataSource), new OrderItemRepositoryImpl(dataSource), new AddressRepositoryImpl(dataSource));
+        ExampleExecuteTemplate.run(exampleService);
+        RawJdbcAssertUtils.assertPgTempShardingTableDatabases(exampleService);
+    }
 }

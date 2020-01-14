@@ -17,7 +17,6 @@
 
 package org.apache.shardingsphere.example.factory;
 
-import org.apache.shardingsphere.example.config.*;
 import org.apache.shardingsphere.example.core.api.DataSourceUtil;
 import org.apache.shardingsphere.example.core.api.DatabaseType;
 import org.apache.shardingsphere.example.type.ShardingType;
