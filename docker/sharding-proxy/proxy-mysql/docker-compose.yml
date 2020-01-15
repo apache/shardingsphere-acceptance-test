@@ -41,6 +41,7 @@ services:
 
     volumes:
       - ./conf-sharding:/opt/sharding-proxy/conf
+      - ../../driver/mysql-connector-java-5.1.47.jar:/opt/sharding-proxy/mysql-connector-java-5.1.47.jar
 
   proxy-orchestration:
     image: apache/sharding-proxy:latest
@@ -53,3 +54,4 @@ services:
 
     volumes:
       - ./conf-orchestration:/opt/sharding-proxy/conf
+      - ../../driver/mysql-connector-java-5.1.47.jar:/opt/sharding-proxy/mysql-connector-java-5.1.47.jar
