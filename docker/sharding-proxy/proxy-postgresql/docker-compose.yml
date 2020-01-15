@@ -30,7 +30,7 @@ services:
     container_name: sharding-proxy-postgresql
     depends_on: 
       - postgresql
-    entrypoint: ./usr/local/bin/docker-entrypoint.sh
+
     volumes:
       - ./conf-sharding:/sharding-proxy/conf
 
