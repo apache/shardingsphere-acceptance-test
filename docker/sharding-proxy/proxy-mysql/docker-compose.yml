@@ -51,7 +51,5 @@ services:
     depends_on:
       - mysql
 
-    entrypoint: ./usr/local/bin/docker-entrypoint.sh
-
     volumes:
       - ./conf-orchestration:/sharding-proxy/conf
