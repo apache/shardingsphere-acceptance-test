@@ -31,13 +31,7 @@ services:
     container_name: sharding-proxy-zookeeper-mysql
     
   proxy-sharding:
-    image: "sharding-proxy:release"
-    build:
-      ## dockerfile path
-      context: ../..
-      ## dockerfile file name
-      dockerfile: Dockerfile
-      ## prots map
+    image: apache/sharding-proxy:latest
     ports: 
       - "3308:3307"
       ## constainer name
@@ -49,13 +43,7 @@ services:
       - ./conf-sharding:/sharding-proxy/conf
 
   proxy-orchestration:
-    image: "sharding-proxy:release"
-    build:
-      ## dockerfile path
-      context: ../..
-      ## dockerfile file name
-      dockerfile: Dockerfile
-      ## prots map
+    image: apache/sharding-proxy:latest
     ports:
       - "3307:3307"
       ## constainer name
