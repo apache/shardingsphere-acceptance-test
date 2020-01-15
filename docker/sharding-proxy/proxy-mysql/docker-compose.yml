@@ -40,7 +40,7 @@ services:
       - mysql
 
     volumes:
-      - ./conf-sharding:/sharding-proxy/conf
+      - ./conf-sharding:/opt/sharding-proxy/conf
 
   proxy-orchestration:
     image: apache/sharding-proxy:latest
@@ -52,4 +52,4 @@ services:
       - mysql
 
     volumes:
-      - ./conf-orchestration:/sharding-proxy/conf
+      - ./conf-orchestration:/opt/sharding-proxy/conf
