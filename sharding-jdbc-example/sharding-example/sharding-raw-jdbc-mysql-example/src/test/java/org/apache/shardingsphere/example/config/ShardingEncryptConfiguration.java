@@ -1,15 +1,13 @@
 package org.apache.shardingsphere.example.config;
 
+import org.apache.shardingsphere.api.config.encrypt.EncryptColumnRuleConfiguration;
+import org.apache.shardingsphere.api.config.encrypt.EncryptRuleConfiguration;
+import org.apache.shardingsphere.api.config.encrypt.EncryptTableRuleConfiguration;
+import org.apache.shardingsphere.api.config.encrypt.EncryptorRuleConfiguration;
 import org.apache.shardingsphere.api.config.sharding.KeyGeneratorConfiguration;
 import org.apache.shardingsphere.api.config.sharding.ShardingRuleConfiguration;
 import org.apache.shardingsphere.api.config.sharding.TableRuleConfiguration;
 import org.apache.shardingsphere.api.config.sharding.strategy.InlineShardingStrategyConfiguration;
-import org.apache.shardingsphere.api.config.sharding.strategy.StandardShardingStrategyConfiguration;
-import org.apache.shardingsphere.encrypt.api.EncryptColumnRuleConfiguration;
-import org.apache.shardingsphere.encrypt.api.EncryptRuleConfiguration;
-import org.apache.shardingsphere.encrypt.api.EncryptTableRuleConfiguration;
-import org.apache.shardingsphere.encrypt.api.EncryptorRuleConfiguration;
-import org.apache.shardingsphere.example.algorithm.PreciseModuloShardingTableAlgorithm;
 import org.apache.shardingsphere.example.core.api.DataSourceUtil;
 import org.apache.shardingsphere.example.core.api.DatabaseType;
 import org.apache.shardingsphere.shardingjdbc.api.ShardingDataSourceFactory;
@@ -43,7 +41,7 @@ public class ShardingEncryptConfiguration implements ExampleConfiguration{
         props.setProperty("aes.key.value", "123456");
         EncryptorRuleConfiguration encryptorAES = new EncryptorRuleConfiguration("AES", props);
         EncryptorRuleConfiguration encryptorMD5 = new EncryptorRuleConfiguration("MD5",new Properties());
-        Map<String,EncryptColumnRuleConfiguration> columns = new HashMap<>();
+        Map<String, EncryptColumnRuleConfiguration> columns = new HashMap<>();
         EncryptColumnRuleConfiguration columnUserName = new EncryptColumnRuleConfiguration("user_name", "user_name_cipher", "", "aes");
         EncryptColumnRuleConfiguration columnPwd = new EncryptColumnRuleConfiguration("pwd_plain", "pwd_cipher", "", "md5");
         columns.put("user_name",columnUserName);
