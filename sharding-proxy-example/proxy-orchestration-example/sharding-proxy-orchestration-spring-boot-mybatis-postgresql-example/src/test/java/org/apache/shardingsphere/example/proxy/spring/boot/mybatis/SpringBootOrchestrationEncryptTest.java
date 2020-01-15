@@ -18,7 +18,7 @@ import java.sql.SQLException;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = SpringBootTestMain.class)
 @ActiveProfiles("encrypt")
-public class SpringBootEOrchestrationEncryptTest {
+public class SpringBootOrchestrationEncryptTest {
     
     @Resource(name = "encrypt")
     ExampleService exampleService;
