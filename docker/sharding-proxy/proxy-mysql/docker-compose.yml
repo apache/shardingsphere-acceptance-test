@@ -31,20 +31,31 @@ services:
     container_name: sharding-proxy-zookeeper-mysql
     
   proxy-sharding:
-    image: apache/sharding-proxy:latest
+    image: apache/sharding-proxy:4.0.0
+    build:
+      ## dockerfile path
+      context: ../..
+      ## dockerfile file name
+      dockerfile: Dockerfile
+      ## prots map
     ports: 
       - "3308:3307"
       ## constainer name
     container_name: sharding-proxy-mysql
     depends_on: 
       - mysql
-
+    entrypoint: ./usr/local/bin/docker-entrypoint.sh
     volumes:
       - ./conf-sharding:/opt/sharding-proxy/conf
-      - ../../driver/mysql-connector-java-5.1.47.jar:/opt/sharding-proxy/mysql-connector-java-5.1.47.jar
 
   proxy-orchestration:
-    image: apache/sharding-proxy:latest
+    image: apache/sharding-proxy:4.0.0
+    build:
+      ## dockerfile path
+      context: ../..
+      ## dockerfile file name
+      dockerfile: Dockerfile
+      ## prots map
     ports:
       - "3307:3307"
       ## constainer name
@@ -52,6 +63,7 @@ services:
     depends_on:
       - mysql
 
+    entrypoint: ./usr/local/bin/docker-entrypoint.sh
+
     volumes:
       - ./conf-orchestration:/opt/sharding-proxy/conf
-      - ../../driver/mysql-connector-java-5.1.47.jar:/opt/sharding-proxy/mysql-connector-java-5.1.47.jar
