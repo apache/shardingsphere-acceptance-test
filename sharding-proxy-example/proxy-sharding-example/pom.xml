@@ -15,6 +15,7 @@
     <packaging>pom</packaging>
 
     <modules>
+
 <!--        <module>sharding-proxy-raw-jdbc-postgresql-example</module>-->
         <module>sharding-proxy-raw-jdbc-mysql-example</module>
         <module>sharding-proxy-spring-boot-mybatis-mysql-example</module>
