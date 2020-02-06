@@ -16,8 +16,8 @@
 
     <modules>
         <module>sharding-proxy-orchestration-spring-namespace-mybatis-mysql-example</module>
-<!--        <module>sharding-proxy-orchestration-spring-namespace-mybatis-postgresql-example</module>-->
+        <module>sharding-proxy-orchestration-spring-namespace-mybatis-postgresql-example</module>
         <module>sharding-proxy-orchestration-spring-boot-mybatis-mysql-example</module>
-<!--        <module>sharding-proxy-orchestration-spring-boot-mybatis-postgresql-example</module>-->
+        <module>sharding-proxy-orchestration-spring-boot-mybatis-postgresql-example</module>
     </modules>
 </project>
