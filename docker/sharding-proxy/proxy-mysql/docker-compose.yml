@@ -31,7 +31,7 @@ services:
     container_name: sharding-proxy-zookeeper-mysql
     
   proxy-sharding:
-    image: apache/sharding-proxy:4.0.0
+    image: "sharding-proxy:release"
     build:
       ## dockerfile path
       context: ../..
@@ -46,10 +46,10 @@ services:
       - mysql
     entrypoint: ./usr/local/bin/docker-entrypoint.sh
     volumes:
-      - ./conf-sharding:/opt/sharding-proxy/conf
+      - ./conf-sharding:/sharding-proxy/conf
 
   proxy-orchestration:
-    image: apache/sharding-proxy:4.0.0
+    image: "sharding-proxy:release"
     build:
       ## dockerfile path
       context: ../..
@@ -66,4 +66,4 @@ services:
     entrypoint: ./usr/local/bin/docker-entrypoint.sh
 
     volumes:
-      - ./conf-orchestration:/opt/sharding-proxy/conf
+      - ./conf-orchestration:/sharding-proxy/conf

@@ -16,15 +16,20 @@
 #
 
 
-FROM apache/sharding-proxy:latest
+FROM java:7
 MAINTAINER ShardingSphere "dev@shardingsphere.incubator.apache.org"
 
-ENV LOCAL_PATH /opt/sharding-proxy
+ENV LOCAL_PATH /sharding-proxy
+ENV HEADER_NAME apache
 
+COPY sharding-proxy-bin.tar.gz .
 COPY ./tools/wait-for-it.sh /usr/local/bin/
 COPY ./tools/docker-entrypoint.sh /usr/local/bin/
 RUN chmod 777 /usr/local/bin/wait-for-it.sh
 RUN chmod 777 /usr/local/bin/docker-entrypoint.sh
+RUN tar -xzvf sharding-proxy-bin.tar.gz
+RUN mv ${HEADER_NAME}*-bin $LOCAL_PATH
 COPY ./driver/mysql-connector-java-5.1.47.jar ${LOCAL_PATH}/lib/mysql-connector-java-5.1.47.jar
+RUN rm -f sharding-proxy-bin.tar.gz
 #/usr/local/bin/wait-for-it.sh sharding-mysql:3306 --
 ENTRYPOINT /sharding-proxy/bin/start.sh $PORT && tail -f /sharding-proxy/logs/stdout.log

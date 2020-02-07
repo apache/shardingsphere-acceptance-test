@@ -23,19 +23,31 @@ services:
     container_name: sharding-proxy-zookeeper-postgresql
     
   proxy-sharding:
-    image: apache/sharding-proxy:latest
+    image: "sharding-proxy:release"
+    build:
+      ## dockerfile path
+      context: ../..
+      ## dockerfile file name
+      dockerfile: Dockerfile
+      ## prots map
     ports: 
       - "13308:3307"
       ## constainer name
     container_name: sharding-proxy-postgresql
     depends_on: 
       - postgresql
-
+    entrypoint: ./usr/local/bin/docker-entrypoint.sh
     volumes:
-      - ./conf-sharding:/opt/sharding-proxy/conf
+      - ./conf-sharding:/sharding-proxy/conf
 
   proxy-orchestration:
-    image: apache/sharding-proxy:latest
+    image: "sharding-proxy:release"
+    build:
+      ## dockerfile path
+      context: ../..
+      ## dockerfile file name
+      dockerfile: Dockerfile
+      ## prots map
     ports:
       - "13307:3307"
       ## constainer name
@@ -43,5 +55,7 @@ services:
     depends_on:
       - postgresql
 
+    entrypoint: ./usr/local/bin/docker-entrypoint.sh
+
     volumes:
-      - ./conf-orchestration:/opt/sharding-proxy/conf
+      - ./conf-orchestration:/sharding-proxy/conf

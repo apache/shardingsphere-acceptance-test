@@ -15,6 +15,7 @@ PORT_RAW_PROXY=3307
 
 cd docker
 ip=`ifconfig -a|grep inet|grep -v 127.0.0.1|grep -v inet6|awk '{print $2}'|tr -d "addr:" | head -1`
+sudo cp ../../$1/sharding-distribution/sharding-proxy-distribution/target/*.tar.gz  ./sharding-proxy-bin.tar.gz
 cd sharding-jdbc/jdbc
 sudo docker-compose up -d
 cd ../../
