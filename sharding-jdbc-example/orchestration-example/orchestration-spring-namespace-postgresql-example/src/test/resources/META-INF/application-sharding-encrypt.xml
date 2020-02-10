@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:sharding="http://shardingsphere.apache.org/schema/shardingsphere/sharding"
+       xmlns:reg="http://shardingsphere.apache.org/schema/shardingsphere/orchestration"
+       xmlns:bean="http://www.springframework.org/schema/util"
+       xmlns:encrypt="http://shardingsphere.apache.org/schema/shardingsphere/encrypt"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans.xsd 
+                        http://www.springframework.org/schema/tx 
+                        http://www.springframework.org/schema/tx/spring-tx.xsd
+                        http://www.springframework.org/schema/context 
+                        http://www.springframework.org/schema/context/spring-context.xsd
+                        http://shardingsphere.apache.org/schema/shardingsphere/sharding
+                        http://shardingsphere.apache.org/schema/shardingsphere/sharding/sharding.xsd
+                        http://www.springframework.org/schema/util
+                        http://www.springframework.org/schema/util/spring-util.xsd
+                        http://shardingsphere.apache.org/schema/shardingsphere/encrypt
+                        http://shardingsphere.apache.org/schema/shardingsphere/encrypt/encrypt.xsd
+                        http://shardingsphere.apache.org/schema/shardingsphere/orchestration
+                         http://shardingsphere.apache.org/schema/shardingsphere/orchestration/orchestration.xsd">
+
+    <context:component-scan base-package="org.apache.shardingsphere.example.core.mybatis" />
+    
+    <bean id="demo_ds_0" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
+        <property name="driverClassName" value="org.postgresql.Driver"/>
+        <property name="jdbcUrl" value="jdbc:postgresql://localhost:5432/shardingsphere?currentSchema=demo_ds_0"/>
+        <property name="username" value="postgres"/>
+        <property name="password" value=""/>
+    </bean>
+    
+    <bean id="demo_ds_1" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
+        <property name="driverClassName" value="org.postgresql.Driver"/>
+        <property name="jdbcUrl" value="jdbc:postgresql://localhost:5432/shardingsphere?currentSchema=demo_ds_1"/>
+        <property name="username" value="postgres"/>
+        <property name="password" value=""/>
+    </bean>
+    
+    <sharding:inline-strategy id="databaseStrategy" sharding-column="user_id" algorithm-expression="demo_ds_${user_id % 2}" />
+    <sharding:inline-strategy id="tableStrategy" sharding-column="user_id" algorithm-expression="t_user_${user_id % 2}" />
+    
+    <bean:properties id="properties">
+        <prop key="worker.id">123</prop>
+    </bean:properties>
+
+    <sharding:data-source id="shardingDataSource">
+        <sharding:sharding-rule data-source-names="demo_ds_0, demo_ds_1">
+            <sharding:encrypt-rule>
+                <encrypt:tables>
+                    <encrypt:table name="t_user">
+                        <encrypt:column logic-column="user_name" plain-column="user_name" cipher-column="user_name_cipher"  encryptor-ref="encryptor_aes" />
+                        <encrypt:column logic-column="pwd" plain-column="pwd_plain" cipher-column="pwd_cipher" encryptor-ref="encryptor_md5"/>
+                    </encrypt:table>
+                </encrypt:tables>
+                <encrypt:encryptors>
+                    <encrypt:encryptor id="encryptor_aes" type="AES"  props-ref="props"/>
+                    <encrypt:encryptor id="encryptor_md5" type="MD5" />
+                </encrypt:encryptors>
+            </sharding:encrypt-rule>
+            <sharding:table-rules>
+                <sharding:table-rule
+                        logic-table="t_user"
+                        actual-data-nodes="demo_ds_${0..1}.t_user_${0..1}"
+                        database-strategy-ref="databaseStrategy"
+                        table-strategy-ref="tableStrategy"
+                />
+            </sharding:table-rules>
+        </sharding:sharding-rule>
+
+        <sharding:props>
+            <prop key="sql.show">true</prop>
+        </sharding:props>
+    </sharding:data-source>
+
+    <bean:properties id="props">
+        <prop key="aes.key.value">123456</prop>
+    </bean:properties>
+
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="shardingDataSource" />
+    </bean>
+    <tx:annotation-driven />
+    <reg:sharding-data-source id="orchestration-spring-namespace-postgresql-sharding-encrypt" registry-center-ref="myRegistry" data-source-ref="shardingDataSource" overwrite="true"/>
+
+    <reg:registry-center id="myRegistry" type="zookeeper" server-lists="localhost:2181" namespace="orchestration-spring-namespace-postgresql" />
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="shardingDataSource"/>
+        <property name="mapperLocations" value="classpath*:META-INF/mappers/postgresql/*.xml"/>
+    </bean>
+    
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="org.apache.shardingsphere.example.core.mybatis.repository"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+    </bean>
+</beans>

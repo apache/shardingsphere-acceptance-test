@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans.xsd 
+                         
+                        
+                        http://www.springframework.org/schema/context 
+                        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="org.apache.shardingsphere.example.core.mybatis"/>
+
+    <bean id="dataSourceHikari" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
+        <property name="driverClassName" value="org.postgresql.Driver"/>
+        <property name="jdbcUrl" value="jdbc:postgresql://localhost:3307/sharding_encrypt?useServerPrepStmts=true&amp;cachePrepStmts=true"/>
+        <property name="username" value="root"/>
+        <property name="password" value=""/>
+    </bean>
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSourceHikari"/>
+        <property name="mapperLocations" value="classpath*:META-INF/mappers/postgresql/*.xml"/>
+    </bean>
+
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="org.apache.shardingsphere.example.core.mybatis.repository"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+    </bean>
+</beans>

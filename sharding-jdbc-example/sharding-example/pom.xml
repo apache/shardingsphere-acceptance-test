@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.apache.shardingsphere.example</groupId>
+        <artifactId>sharding-jdbc-example</artifactId>
+        <version>4.0.0-RC4-SNAPSHOT</version>
+    </parent>
+    <artifactId>sharding-example</artifactId>
+    <name>AcceptanceTest::sharding::root</name>
+    
+    <packaging>pom</packaging>
+    
+    <modules>
+        <module>sharding-spring-boot-mybatis-mysql-example</module>
+        <module>sharding-spring-boot-mybatis-postgresql-example</module>
+        <module>sharding-raw-jdbc-mysql-example</module>
+        <module>sharding-raw-jdbc-postgresql-example</module>
+        <module>sharding-spring-namespace-mybatis-mysql-example</module>
+        <module>sharding-spring-namespace-mybatis-postgresql-example</module>
+    </modules>
+</project>

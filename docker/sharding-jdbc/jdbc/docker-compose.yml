@@ -1,0 +1,45 @@
+version: '3.7'
+services:
+  jdbc-mysql:
+    ## mysql version, you could get more tags at here : https://hub.docker.com/_/mysql?tab=tags
+    image: "mysql:5.7"
+    ## default port is 3306, you could change to 33060 or any other port doesn't conflict MySQL on your OS
+    ports:
+      - "3310:3306"
+    container_name: jdbc-mysql
+    ## launch mysql without password
+    ## you could access the mysql in container by following command :
+    ## docker exec -it sharding-sphere-mysql mysql -uroot
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+    ## if you insist to use password in mysql, remove MYSQL_ALLOW_EMPTY_PASSWORD=yes and uncomment following args
+    #  - MYSQL_ROOT_PASSWORD=root
+    ulimits:
+      nofile:
+        soft: "65536"
+        hard: "65536"
+
+    volumes: 
+      - ../../../src/resources/manual_schema.sql:/docker-entrypoint-initdb.d/manual_schema.sql
+      - ./mysql-conf/my.cnf:/etc/mysql/my.cnf
+
+  jdbc-zookeeper:
+    ## get more versions of zookeeper here : https://hub.docker.com/_/zookeeper?tab=tags
+    image: "zookeeper:3.4"
+    ports: 
+     - "2188:2181"
+    container_name: sharding-jdbc-zookeeper
+
+  jdbc-postgres:
+    ## get more versions of zookeeper here : https://hub.docker.com/_/postgres?tab=tags
+    image: postgres:11
+    ports:
+      - "5433:5432"
+    container_name: jdbc-postgresql
+    environment:
+      POSTGRES_DB: shardingsphere
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD:
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - ../../../src/resources/manual_schema_postgre.sql:/docker-entrypoint-initdb.d/manual_schema_postgre.sql

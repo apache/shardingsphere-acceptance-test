@@ -1,0 +1,61 @@
+version: '3.7'
+services:
+  postgresql:
+    image: postgres:11
+    ports:
+      - "15432:5432"
+    container_name: proxy-postgresql
+    environment:
+      POSTGRES_DB: shardingsphere
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD:
+      PGDATA: /var/lib/postgresql/data/pgdata
+    #      Resolving privileged
+    #      privileged: true
+    volumes:
+      - ../../../src/resources/manual_schema_postgre.sql:/docker-entrypoint-initdb.d/manual_schema_postgre.sql
+
+  zookeeper:
+    ## get more versions of zookeeper here : https://hub.docker.com/_/zookeeper?tab=tags
+    image: "zookeeper:3.4"
+    ports: 
+     - "12185:2181"
+    container_name: sharding-proxy-zookeeper-postgresql
+    
+  proxy-sharding:
+    image: "sharding-proxy:release"
+    build:
+      ## dockerfile path
+      context: ../..
+      ## dockerfile file name
+      dockerfile: Dockerfile
+      ## prots map
+    ports: 
+      - "13308:3307"
+      ## constainer name
+    container_name: sharding-proxy-postgresql
+    depends_on: 
+      - postgresql
+    entrypoint: ./usr/local/bin/docker-entrypoint.sh
+    volumes:
+      - ./conf-sharding:/sharding-proxy/conf
+
+  proxy-orchestration:
+    image: "sharding-proxy:release"
+    build:
+      ## dockerfile path
+      context: ../..
+      ## dockerfile file name
+      dockerfile: Dockerfile
+      ## prots map
+    ports:
+      - "13307:3307"
+      ## constainer name
+    container_name: orchestration-proxy-postgresql
+    depends_on:
+      - postgresql
+
+    entrypoint: ./usr/local/bin/docker-entrypoint.sh
+
+    volumes:
+      - ./conf-orchestration:/sharding-proxy/conf
